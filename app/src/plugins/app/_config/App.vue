@@ -2,6 +2,7 @@
   <div>
     <a-header />
     <RouterView />
+    <a-footer />
   </div>
 </template>
 
