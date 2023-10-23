@@ -7,11 +7,14 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ACategoryCard: typeof import('./src/plugins/app@ecommerce/storefront/_components/a-category-card.vue')['default']
+    AFooter: typeof import('./src/plugins/app/_layout/footer/a-footer.vue')['default']
     AHeader: typeof import('./src/plugins/app/_layout/header/a-header.vue')['default']
     App: typeof import('./src/plugins/app/_config/App.vue')['default']
     ASearchbar: typeof import('./src/plugins/app@ecommerce/storefront/_components/a-searchbar.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Storefront: typeof import('./src/plugins/app@ecommerce/storefront/storefront.vue')['default']
+    ZProductCard: typeof import('./src/plugins/app@ecommerce/_components/z-product-card.vue')['default']
   }
 }
