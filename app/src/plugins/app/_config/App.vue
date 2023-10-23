@@ -1,5 +1,8 @@
 <template>
-  <RouterView />
+  <div>
+    <a-header />
+    <RouterView />
+  </div>
 </template>
 
 <script setup lang="ts">
