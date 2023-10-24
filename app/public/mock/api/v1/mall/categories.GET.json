@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "title": "Elektronika",
+        "slug": "elektronika"
+    },
+    {
+        "id": 2,
+        "title": "Oblečenie",
+        "slug": "oblecenie"
+    },
+    {
+        "id": 3,
+        "title": "Nábytok",
+        "slug": "nabytok"
+    },
+    {
+        "id": 4,
+        "title": "Záhrada",
+        "slug": "zahrada"
+    },
+    {
+        "id": 5,
+        "title": "Drogeria",
+        "slug": "drogeria"
+    },
+    {
+        "id": 6,
+        "title": "Hračky",
+        "slug": "hracky"
+    },
+    {
+        "id": 7,
+        "title": "Šport",
+        "slug": "sport"
+    },
+    {
+        "id": 8,
+        "title": "Zvieratá",
+        "slug": "zvierata"
+    },
+    {
+        "id": 9,
+        "title": "Auto",
+        "slug": "auto"
+    },
+    {
+        "id": 10,
+        "title": "Kancelária",
+        "slug": "kancelaria"
+    },
+    {
+        "id": 11,
+        "title": "Zdravie",
+        "slug": "zdravie"
+    },
+    {
+        "id": 12,
+        "title": "Domácnosť",
+        "slug": "domacnost"
+    },
+    {
+        "id": 13,
+        "title": "Zábava",
+        "slug": "zabava"
+    },
+    {
+        "id": 14,
+        "title": "Knižky",
+        "slug": "knizky"
+    },
+    {
+        "id": 15,
+        "title": "Potraviny",
+        "slug": "potraviny"
+    },
+    {
+        "id": 16,
+        "title": "Ostatné",
+        "slug": "ostatne"
+    }
+]

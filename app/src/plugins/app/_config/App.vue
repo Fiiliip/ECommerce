@@ -6,6 +6,10 @@
   </div>
 </template>
 
-<script setup lang="ts">
-import { RouterView } from 'vue-router'
+<script lang="ts">
+export default {
+  created() {
+    this.$store.dispatch('ecommerce/initialize')
+  }
+}
 </script>
