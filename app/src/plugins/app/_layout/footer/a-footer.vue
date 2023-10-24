@@ -3,8 +3,8 @@
         <div class="flex sm:justify-center">
             <div>
                 <h2 class="mb-2 font-medium">Návody</h2>
-                <a class="block" href="#">Ako nakupovať?</a>
-                <a class="block" href="#">Ako vytvoriť úspešný inzerát?</a>
+                <a class="block hover:text-zinc-300" href="#">Ako nakupovať?</a>
+                <a class="block hover:text-zinc-300" href="#">Ako vytvoriť úspešný inzerát?</a>
             </div>
         </div>
 
@@ -14,9 +14,11 @@
                 <div class="mt-2 xs:mt-0 xs:ml-2">
                     <h2 class="mb-2 font-medium">Kontakt</h2>
                     <p>FRI UNIZA s.r.o.</p>
-                    <p>Topoľová 1,</p>
-                    <p>Žilina-Budatín 010 03</p>
-                    <a class="block" href="mailto:kontakt@fri.uniza.sk">kontakt@fri.uniza.sk</a>
+                    <a class="hover:text-zinc-300" href="http://maps.google.com/?q=Topoľová+1,+Žilina-Budatín+010+03" target="_blank">
+                        Topoľová 1,<br>
+                        Žilina-Budatín 010 03
+                    </a>
+                    <a class="block hover:text-zinc-300" href="mailto:kontakt@fri.uniza.sk">kontakt@fri.uniza.sk</a>
                 </div>
             </div>
         </div>
