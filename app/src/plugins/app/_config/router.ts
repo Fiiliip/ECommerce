@@ -27,6 +27,16 @@ const router = createRouter({
       path: '/auth/reset-password',
       name: 'Reset Password',
       component: () => import('@/plugins/app@auth/reset-password/reset-password.vue')
+    },
+    {
+      path: '/category/:slug',
+      name: 'Category',
+      component: () => import('@/plugins/app@ecommerce/category/category.vue')
+    },
+    {
+      path: '/product/:id',
+      name: 'Product',
+      component: () => import('@/plugins/app@ecommerce/product/product.vue')
     }
   ]
 })
