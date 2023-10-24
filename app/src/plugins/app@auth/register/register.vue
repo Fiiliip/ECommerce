@@ -2,7 +2,7 @@
     <div class="min-h-full py-12 sm:px-6 lg:px-8 flex flex-1 flex-col justify-center">
         <div class="mt-10 sm:w-full sm:max-w-[480px] sm:mx-auto">
             <div class="px-6 sm:px-12 py-12 bg-white shadow sm:rounded-lg">
-                <h2 class="text-2xl font-bold leading-9 tracking-tight">Prihlásiť sa</h2>
+                <h2 class="text-2xl font-bold leading-9 tracking-tight">Registrovať sa</h2>
 
                 <form @submit.prevent="register()" class="mt-4 space-y-9">
                     <div class="md:flex md:space-y-0 space-y-6">
@@ -71,9 +71,21 @@ export default {
     },
     methods: {
         async register() {
-            if (!await this.v$.validate()) return
+            if (!await this.v$.$validate()) return
 
-            console.log("Register")
+            try {
+                // TODO: Send AXIOS request.
+
+                if (this.rememberMe) {
+                    localStorage.setItem('ecommerce_user_remember_me', 'true')
+                } else {
+                    localStorage.setItem('ecommerce_user_remember_me', 'false')
+                }
+
+                this.$router.replace({ name: 'Home' })
+            } catch(error) {
+                console.log(error)
+            }
         }
     }
 }

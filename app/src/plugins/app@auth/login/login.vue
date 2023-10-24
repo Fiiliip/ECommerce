@@ -62,9 +62,21 @@ export default {
     },
     methods: {
         async login() {
-            if (!await this.v$.validate()) return
+            if (!await this.v$.$validate()) return
 
-            console.log("Login")
+            try {
+                // TODO: Send AXIOS request.
+
+                if (this.rememberMe) {
+                    localStorage.setItem('ecommerce_user_remember_me', 'true')
+                } else {
+                    localStorage.setItem('ecommerce_user_remember_me', 'false')
+                }
+                
+                this.$router.replace({ name: 'Home' })
+            } catch(error) {
+                console.log(error)
+            }
         }
     }
 }
