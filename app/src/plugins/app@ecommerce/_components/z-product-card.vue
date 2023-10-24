@@ -1,11 +1,11 @@
 <template>
     <div @click="$router.push({ name: 'Product', params: { id: product.id }})" class="p-3 bg-white hover:bg-zinc-100 rounded-md shadow-md cursor-pointer">
-        <img :src="product.images[0]" :alt="product.title" class="w-full h-40 mx-auto object-cover rounded-lg" />
+        <img :src="product.images[0].url" :alt="product.title" class="w-full h-40 mx-auto object-cover rounded-lg" />
         <div class="mt-2">
             <h3 class="h-10 text-sm font-semibold text-truncate">{{ product.title }}</h3>
             <div class="line my-2"></div>
             <div class="flex justify-between items-center overflow-hidden">
-                <p class="mr-1 text-sm font-bold">{{ product.formatted_price }}</p>
+                <p class="mr-1 text-sm font-bold">{{ product.price }}</p>
                 <div class="flex ml-1 items-center">
                     <img class="h-4 w-4 mt-[1px] mx-auto" src="@/plugins/app/_assets/_icons/location.svg">
                     <p class="ml-1 text-sm font-semibold">{{ product.location }}</p>

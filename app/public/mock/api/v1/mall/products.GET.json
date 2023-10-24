@@ -3,9 +3,9 @@
         "id": 1,
         "title": "5 IZB. MEZONET, VYSOKÉ TATRY",
         "description": "MLM reality Poprad vám na predaj ponúka velkometrážny 5 izbový mezonet so zariadením v nadstavbe bytového domu. Je ideálny na komfortné bývanie pre viacčlennú rodinku ale aj ako investičná príležitosť. Nachádza sa v Tatranskej Štrbe.",
-        "user": {
+        "author": {
             "id": 1,
-            "username": "František Hvila - mlm reality s.r.o.",
+            "name": "František Hvila - mlm reality s.r.o.",
             "contact": {
                 "phone": "0900 000 000",
                 "email": "reality@email.sk"
@@ -13,17 +13,38 @@
         },
         "location": "Poprad",
         "views": 874,
-        "formatted_price": "1 000€",
-        "images": ["https://picsum.photos/300/200", "https://picsum.photos/300/200", "https://picsum.photos/300/200"],
+        "price": "1 000€",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://picsum.photos/300/200"
+            },
+            {
+                "id": 2,
+                "url": "https://picsum.photos/200"
+            },
+            {
+                "id": 3,
+                "url": "https://picsum.photos/200/300"
+            },
+            {
+                "id": 4,
+                "url": "https://picsum.photos/200/300"
+            },
+            {
+                "id": 5,
+                "url": "https://picsum.photos/300/300"
+            }
+        ],
         "date_created": "2023-10-7"
     },
     {
         "id": 1,
         "title": "5 IZB. MEZONET, VYSOKÉ TATRY",
         "description": "MLM reality Poprad vám na predaj ponúka velkometrážny 5 izbový mezonet so zariadením v nadstavbe bytového domu. Je ideálny na komfortné bývanie pre viacčlennú rodinku ale aj ako investičná príležitosť. Nachádza sa v Tatranskej Štrbe.",
-        "user": {
+        "author": {
             "id": 1,
-            "username": "František Hvila - mlm reality s.r.o.",
+            "name": "František Hvila - mlm reality s.r.o.",
             "contact": {
                 "phone": "0900 000 000",
                 "email": "reality@email.sk"
@@ -31,17 +52,30 @@
         },
         "location": "Poprad",
         "views": 874,
-        "formatted_price": "1 000€",
-        "images": ["https://picsum.photos/300/200", "https://picsum.photos/300/200", "https://picsum.photos/300/200"],
+        "price": "1 000€",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://picsum.photos/300/200"
+            },
+            {
+                "id": 2,
+                "url": "https://picsum.photos/300/200"
+            },
+            {
+                "id": 3,
+                "url": "https://picsum.photos/300/200"
+            }
+        ],
         "date_created": "2023-10-7"
     },
     {
         "id": 1,
         "title": "5 IZB. MEZONET, VYSOKÉ TATRY",
         "description": "MLM reality Poprad vám na predaj ponúka velkometrážny 5 izbový mezonet so zariadením v nadstavbe bytového domu. Je ideálny na komfortné bývanie pre viacčlennú rodinku ale aj ako investičná príležitosť. Nachádza sa v Tatranskej Štrbe.",
-        "user": {
+        "author": {
             "id": 1,
-            "username": "František Hvila - mlm reality s.r.o.",
+            "name": "František Hvila - mlm reality s.r.o.",
             "contact": {
                 "phone": "0900 000 000",
                 "email": "reality@email.sk"
@@ -49,17 +83,30 @@
         },
         "location": "Poprad",
         "views": 874,
-        "formatted_price": "1 000€",
-        "images": ["https://picsum.photos/300/200", "https://picsum.photos/300/200", "https://picsum.photos/300/200"],
+        "price": "1 000€",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://picsum.photos/300/200"
+            },
+            {
+                "id": 2,
+                "url": "https://picsum.photos/300/200"
+            },
+            {
+                "id": 3,
+                "url": "https://picsum.photos/300/200"
+            }
+        ],
         "date_created": "2023-10-7"
     },
     {
         "id": 1,
         "title": "5 IZB. MEZONET, VYSOKÉ TATRY",
         "description": "MLM reality Poprad vám na predaj ponúka velkometrážny 5 izbový mezonet so zariadením v nadstavbe bytového domu. Je ideálny na komfortné bývanie pre viacčlennú rodinku ale aj ako investičná príležitosť. Nachádza sa v Tatranskej Štrbe.",
-        "user": {
+        "author": {
             "id": 1,
-            "username": "František Hvila - mlm reality s.r.o.",
+            "name": "František Hvila - mlm reality s.r.o.",
             "contact": {
                 "phone": "0900 000 000",
                 "email": "reality@email.sk"
@@ -67,17 +114,30 @@
         },
         "location": "Poprad",
         "views": 874,
-        "formatted_price": "1 000€",
-        "images": ["https://picsum.photos/300/200", "https://picsum.photos/300/200", "https://picsum.photos/300/200"],
+        "price": "1 000€",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://picsum.photos/300/200"
+            },
+            {
+                "id": 2,
+                "url": "https://picsum.photos/300/200"
+            },
+            {
+                "id": 3,
+                "url": "https://picsum.photos/300/200"
+            }
+        ],
         "date_created": "2023-10-7"
     },
     {
         "id": 1,
         "title": "5 IZB. MEZONET, VYSOKÉ TATRY",
         "description": "MLM reality Poprad vám na predaj ponúka velkometrážny 5 izbový mezonet so zariadením v nadstavbe bytového domu. Je ideálny na komfortné bývanie pre viacčlennú rodinku ale aj ako investičná príležitosť. Nachádza sa v Tatranskej Štrbe.",
-        "user": {
+        "author": {
             "id": 1,
-            "username": "František Hvila - mlm reality s.r.o.",
+            "name": "František Hvila - mlm reality s.r.o.",
             "contact": {
                 "phone": "0900 000 000",
                 "email": "reality@email.sk"
@@ -85,8 +145,21 @@
         },
         "location": "Poprad",
         "views": 874,
-        "formatted_price": "1 000€",
-        "images": ["https://picsum.photos/300/200", "https://picsum.photos/300/200", "https://picsum.photos/300/200"],
+        "price": "1 000€",
+        "images": [
+            {
+                "id": 1,
+                "url": "https://picsum.photos/300/200"
+            },
+            {
+                "id": 2,
+                "url": "https://picsum.photos/200"
+            },
+            {
+                "id": 3,
+                "url": "https://picsum.photos/200/300"
+            }
+        ],
         "date_created": "2023-10-7"
     }
 ]
