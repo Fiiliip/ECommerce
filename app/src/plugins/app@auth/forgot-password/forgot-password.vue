@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-full py-12 sm:px-6 lg:px-8 flex flex-1 flex-col justify-center">
+    <div class="py-12 sm:px-6 lg:px-8 flex flex-1 flex-col justify-center">
         <div class="mt-10 sm:w-full sm:max-w-[480px] sm:mx-auto">
             <div class="px-6 sm:px-12 py-12 bg-white shadow sm:rounded-lg">
                 <h2 class="text-2xl font-bold leading-9 tracking-tight">Zabudnuté heslo?</h2>
