@@ -1,9 +1,9 @@
 <template>
-    <div class="w-[95%] sm:w-[70%] flex p-4 bg-white rounded-md shadow-md">
+    <div class="w-[95%] sm:w-[85%] md:w-[75%] lg:w-[70%] flex p-4 bg-white rounded-md shadow-md">
         <!-- Search search -->
         <input v-model="query.search" @keyup.enter="search()" type="text" class="w-full p-2 mr-2 border rounded-md focus:ring focus:ring-blue-400" placeholder="Hľadať...">
         <!-- Category Dropdown -->
-        <div v-if="showCategory" class="relative w-full mr-2">
+        <div v-if="showCategory" class="relative w-full sm:w-[80%] md:w-[70%] lg:w-[60%] mr-2">
             <button @click="showDropdown = !showDropdown" class="w-full flex p-2 items-center justify-between border rounded-md hover:bg-zinc-100">
                 <p>{{ getCategoryTitle() }}</p>
                 <div>
