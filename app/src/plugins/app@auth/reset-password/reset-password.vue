@@ -37,7 +37,7 @@ export default {
         return {
             v$: useVuealidate(),
             form: {
-                email: localStorage.getItem('ecommerce_reset_password_user_email'),
+                email: localStorage.getItem('emarketplace_reset_password_user_email'),
                 code: '',
                 password: '',
                 password_confirmation: ''
@@ -59,7 +59,7 @@ export default {
 
             try {
                 // TODO: Send AXIOS request.
-                localStorage.removeItem('ecommerce_reset_password_email')
+                localStorage.removeItem('emarketplace_reset_password_email')
                 this.$router.replace({ name: 'Login' })
             } catch(error) {
                 console.log(error)

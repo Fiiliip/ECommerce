@@ -52,7 +52,7 @@ export default {
 
             try {
                 // TODO: Send AXIOS request.
-                localStorage.setItem('ecommerce_reset_password_user_email', this.form.email)
+                localStorage.setItem('emarketplace_reset_password_user_email', this.form.email)
                 this.$router.push({ name: 'Reset Password' })
             } catch(error) {
                 console.log(error)

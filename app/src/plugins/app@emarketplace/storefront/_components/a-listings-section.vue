@@ -2,7 +2,7 @@
     <section>
         <h1 class="text-lg font-bold">{{ title }}</h1>
         <div class="grid justify-center grid-cols xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap">
-            <z-product-card class="m-1" v-for="product in products" :key="product.id" :product="product"/>
+            <z-listing-card class="m-1" v-for="listing in listings" :key="listing.id" :listing="listing"/>
         </div>
     </section>
 </template>
@@ -21,12 +21,12 @@ export default {
     },
     data() {
         return {
-            products: null,
+            listings: null,
         }
     },
 
     async mounted() {
-        this.products = await this._getProducts(this.query)
+        this.listings = await this._getListings(this.query)
     },
 }
 </script>

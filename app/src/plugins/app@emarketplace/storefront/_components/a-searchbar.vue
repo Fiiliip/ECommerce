@@ -38,7 +38,7 @@ export default {
 
     data() {
         return {
-            categories: this.$store.getters['ecommerce/categories'],
+            categories: this.$store.getters['emarketplace/categories'],
             showDropdown: false,
         }
     },

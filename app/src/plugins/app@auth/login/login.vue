@@ -68,9 +68,9 @@ export default {
                 // TODO: Send AXIOS request.
 
                 if (this.rememberMe) {
-                    localStorage.setItem('ecommerce_user_remember_me', 'true')
+                    localStorage.setItem('emarketplace_user_remember_me', 'true')
                 } else {
-                    localStorage.setItem('ecommerce_user_remember_me', 'false')
+                    localStorage.setItem('emarketplace_user_remember_me', 'false')
                 }
 
                 this.$router.replace({ name: 'Home' })

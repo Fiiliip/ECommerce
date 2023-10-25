@@ -11,7 +11,7 @@
             </div>
         </section>
 
-        <a-products-section class="mt-20" v-for="productSection in productSections" :key="productSection" :title="productSection.title"></a-products-section>
+        <a-listings-section class="mt-20" v-for="listingSection in listingSections" :key="listingSection" :title="listingSection.title"></a-listings-section>
     </div>
 </template>
 
@@ -19,8 +19,8 @@
 export default {
     data() {
         return {
-            categories: this.$store.getters['ecommerce/categories'],
-            productSections: [
+            categories: this.$store.getters['emarketplace/categories'],
+            listingSections: [
                 {
                     title: 'Najnovšie inzeráty',
                     query: '',

@@ -3,14 +3,14 @@ import './refreshExpired'
 
 const authDuration = 60 * 60 * 1000 // 1 hour in milliseconds
 
-if (localStorage.getItem('ecommerce_user_rememberMe') === 'false') {
-	const userLastSeen = localStorage.getItem('ecommerce_user_lastSeen')
+if (localStorage.getItem('emarketplace_user_rememberMe') === 'false') {
+	const userLastSeen = localStorage.getItem('emarketplace_user_lastSeen')
 	const currentDate = new Date()
 
 	// If time difference is bigger than value set in authDuration.
 	if (userLastSeen && currentDate.getTime() - new Date(userLastSeen).getTime() > authDuration) {
-		localStorage.removeItem('ecommerce_user_token')
-		localStorage.removeItem('ecommerce_user_user')
+		localStorage.removeItem('emarketplace_user_token')
+		localStorage.removeItem('emarketplace_user_user')
 	}
 }
 
@@ -18,8 +18,8 @@ export default {
 	namespaced: true,
 	state: {
 		status: '',
-		_token: localStorage.getItem('ecommerce_user_token') || '',
-		user: JSON.parse(localStorage.getItem('ecommerce_user_user') || '{}'),
+		_token: localStorage.getItem('emarketplace_user_token') || '',
+		user: JSON.parse(localStorage.getItem('emarketplace_user_user') || '{}'),
 	},
 	mutations: {
 		auth_request(state: any) {
@@ -29,27 +29,27 @@ export default {
 			state.status = 'success'
 			if (data.token) {
 				state._token = data.token
-				localStorage.setItem('ecommerce_user_token', data.token)
+				localStorage.setItem('emarketplace_user_token', data.token)
 			}
 
 			if (data.user) {
 				state.user = data.user
-				localStorage.setItem('ecommerce_user_user', JSON.stringify(data.user))
+				localStorage.setItem('emarketplace_user_user', JSON.stringify(data.user))
 			}
 		},
 		auth_error(state: any) {
 			state.status = 'error'
 			state._token = ''
-			localStorage.removeItem('ecommerce_user_token')
-			localStorage.removeItem('ecommerce_user_user')
+			localStorage.removeItem('emarketplace_user_token')
+			localStorage.removeItem('emarketplace_user_user')
 		},
 		logout(state: any) {
 			state.status = ''
 			state._token = ''
 			state.user = null
 
-			localStorage.removeItem('ecommerce_user_token')
-			localStorage.removeItem('ecommerce_user_user')
+			localStorage.removeItem('emarketplace_user_token')
+			localStorage.removeItem('emarketplace_user_user')
 
 			window.location.reload()
 		}

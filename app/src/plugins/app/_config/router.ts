@@ -7,8 +7,19 @@ const router = createRouter({
     {
       path: '/',
       name: 'Home',
-      component: () => import('@/plugins/app@ecommerce/storefront/storefront.vue')
+      component: () => import('@/plugins/app@emarketplace/storefront/storefront.vue')
     },
+    {
+      path: '/category/:slug',
+      name: 'Category',
+      component: () => import('@/plugins/app@emarketplace/category/category.vue')
+    },
+    {
+      path: '/listing/:id',
+      name: 'Listing',
+      component: () => import('@/plugins/app@emarketplace/listing/listing.vue')
+    },
+    // Auth
     {
       path: '/auth/login',
       name: 'Login',
@@ -32,22 +43,12 @@ const router = createRouter({
       name: 'Reset Password',
       component: () => import('@/plugins/app@auth/reset-password/reset-password.vue'),
       meta: { requiresAuth: false },
-    },
-    {
-      path: '/category/:slug',
-      name: 'Category',
-      component: () => import('@/plugins/app@ecommerce/category/category.vue')
-    },
-    {
-      path: '/product/:id',
-      name: 'Product',
-      component: () => import('@/plugins/app@ecommerce/product/product.vue')
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
-	localStorage.setItem("ecommerce_user_lastSeen", Date())
+	localStorage.setItem("emarketplace_user_lastSeen", Date())
 
 	if (to.meta.requiresAuth === true) {
 		if (!store.getters["auth/isLoggedIn"]) {

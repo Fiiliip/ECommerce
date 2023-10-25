@@ -4,14 +4,14 @@ export default {
     namespaced: true,
 
     state: {
-        categories: localStorage.getItem('ecommerce_categories') ? JSON.parse(localStorage.getItem('ecommerce_categories')) : null,
+        categories: localStorage.getItem('emarketplace_categories') ? JSON.parse(localStorage.getItem('emarketplace_categories')) : null,
     },
 
     mutations: {
         set_categories(state: any, categories: any) {
             state.categories = categories
             if (categories) {
-                localStorage.setItem('ecommerce_categories', JSON.stringify(categories))
+                localStorage.setItem('emarketplace_categories', JSON.stringify(categories))
             }
         },
     },

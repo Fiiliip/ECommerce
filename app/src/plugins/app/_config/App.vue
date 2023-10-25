@@ -9,7 +9,7 @@
 <script lang="ts">
 export default {
   created() {
-    this.$store.dispatch('ecommerce/initialize')
+    this.$store.dispatch('emarketplace/initialize')
   }
 }
 </script>
