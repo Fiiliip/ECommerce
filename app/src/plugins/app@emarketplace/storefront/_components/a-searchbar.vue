@@ -1,7 +1,7 @@
 <template>
     <div class="w-[95%] sm:w-[70%] flex p-4 bg-white rounded-md shadow-md">
         <!-- Search search -->
-        <input v-model="query.search" type="text" class="w-full p-2 mr-2 border rounded-md focus:ring focus:ring-blue-400" placeholder="Hľadať...">
+        <input v-model="query.search" @keyup.enter="search()" type="text" class="w-full p-2 mr-2 border rounded-md focus:ring focus:ring-blue-400" placeholder="Hľadať...">
         <!-- Category Dropdown -->
         <div v-if="showCategory" class="relative w-full mr-2">
             <button @click="showDropdown = !showDropdown" class="w-full flex p-2 items-center justify-between border rounded-md hover:bg-zinc-100">
@@ -57,7 +57,19 @@ export default {
 
     methods: {
         search() {
-            this.$router.push({ name: 'Listings', query: this.query })
+            if (this.query.category && this.query.search) {
+                this.$router.push({ name: 'Listings', query: this.query })
+                window.location.href = this.href
+            } else if (this.query.category) {
+                this.$router.push({ name: 'Listings', query: { category: this.query.category } })
+                window.location.href = this.href
+            } else if (this.query.search) {
+                this.$router.push({ name: 'Listings', query: { search: this.query.search } })
+                window.location.href = this.href
+            } else {
+                this.$router.push({ name: 'Listings' })
+                window.location.href = this.href
+            }
         },
     },
 
