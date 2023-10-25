@@ -8,6 +8,10 @@ export default {
                 console.error(error)
             }
             return listings
+        },
+
+        getCategoryTitle() {
+            return this.$store.getters['emarketplace/categories'].find(category => category.slug === this.$route.query.category)?.title || 'Všetko'
         }
     }
 }

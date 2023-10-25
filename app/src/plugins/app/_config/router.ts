@@ -10,9 +10,9 @@ const router = createRouter({
       component: () => import('@/plugins/app@emarketplace/storefront/storefront.vue')
     },
     {
-      path: '/category/:slug',
-      name: 'Category',
-      component: () => import('@/plugins/app@emarketplace/category/category.vue')
+      path: '/listings/',
+      name: 'Listings',
+      component: () => import('@/plugins/app@emarketplace/listings/listings.vue')
     },
     {
       path: '/listing/:id',

@@ -7,20 +7,17 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    _component: typeof import('./src/plugins/app@auth/_component.vue')['default']
     ACategoryCard: typeof import('./src/plugins/app@emarketplace/storefront/_components/a-category-card.vue')['default']
-    ACategoryFilters: typeof import('./src/plugins/app@emarketplace/category/_components/a-category-filters.vue')['default']
     AFooter: typeof import('./src/plugins/app/_layout/footer/a-footer.vue')['default']
     AHeader: typeof import('./src/plugins/app/_layout/header/a-header.vue')['default']
-    App: typeof import('./src/plugins/app/_config/App.vue')['default']
     AListingFilters: typeof import('./src/plugins/app@emarketplace/listings/_components/a-listing-filters.vue')['default']
     AListingsSection: typeof import('./src/plugins/app@emarketplace/storefront/_components/a-listings-section.vue')['default']
+    App: typeof import('./src/plugins/app/_config/App.vue')['default']
     ASearchbar: typeof import('./src/plugins/app@emarketplace/storefront/_components/a-searchbar.vue')['default']
-    Category: typeof import('./src/plugins/app@emarketplace/category/category.vue')['default']
     ForgotPassword: typeof import('./src/plugins/app@auth/forgot-password/forgot-password.vue')['default']
-    Login: typeof import('./src/plugins/app@auth/login/login.vue')['default']
     Listing: typeof import('./src/plugins/app@emarketplace/listing/listing.vue')['default']
     Listings: typeof import('./src/plugins/app@emarketplace/listings/listings.vue')['default']
+    Login: typeof import('./src/plugins/app@auth/login/login.vue')['default']
     Register: typeof import('./src/plugins/app@auth/register/register.vue')['default']
     ResetPassword: typeof import('./src/plugins/app@auth/reset-password/reset-password.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

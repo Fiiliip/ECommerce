@@ -21,12 +21,10 @@
                     <p v-if="listing.author.contact.phone" class="text-sm">Telefón: <a :href="`tel:${listing.author.contact.phone}`" class="hover:text-zinc-400">{{ listing.author.contact.phone }}</a></p>
                 </div>
                 <div class="flex mt-3 items-center justify-between">
-                    <div class="h-5 flex flex-row items-center bg-zinc-200 px-2 py-1 mr-1 rounded">
+                    <a :href="`http://maps.google.com/?q=${listing.location}`" target="_blank" class="h-5 flex flex-row items-center hover:text-zinc-400 bg-zinc-200 px-2 py-1 mr-1 rounded">
                         <img class="h-3.5 w-3.5 mt-[1px] mx-auto" src="@/plugins/app/_assets/_icons/location.svg" alt="location"/>
-                        <p class="ml-1.5 text-sm hover:text-zinc-400">
-                            <a :href="`http://maps.google.com/?q=${listing.location}`" target="_blank">{{ listing.location }}</a>
-                        </p>
-                    </div>
+                        <p class="ml-1.5 text-sm">{{ listing.location }}</p>
+                    </a>
                     <div class="flex items-center">
                         <div class="h-5 flex flex-row items-center bg-zinc-200 px-2 py-1 mr-1 rounded">
                             <img class="h-4 w-4 mt-[2px] mx-auto" src="@/plugins/app/_assets/_icons/eye.svg" alt="views"/>

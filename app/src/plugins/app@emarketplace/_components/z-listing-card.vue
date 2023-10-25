@@ -1,5 +1,5 @@
 <template>
-    <div @click="$router.push({ name: 'Lroduct', params: { id: listing.id }})" class="p-3 bg-white hover:bg-zinc-100 rounded-md shadow-md cursor-pointer">
+    <div @click="$router.push({ name: 'Listing', params: { id: listing.id }})" class="p-3 bg-white hover:bg-zinc-100 rounded-md shadow-md cursor-pointer">
         <img :src="listing.images[0].url" :alt="listing.title" class="w-full h-40 mx-auto object-cover rounded-lg" />
         <div class="mt-2">
             <h3 class="h-10 text-sm font-semibold text-truncate">{{ listing.title }}</h3>

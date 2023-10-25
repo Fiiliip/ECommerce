@@ -1,13 +1,13 @@
 <template>
-    <div class="mx-5">
-        <div class="mt-5 flex justify-center">
+    <div class="my-5 mx-5">
+        <div class="flex justify-center">
             <a-searchbar :showCategory="true" />
         </div>
-        <h1 class="mt-5 text-3xl font-bold">Kategória</h1>
+        <h1 class="mt-5 text-3xl font-bold">{{ getCategoryTitle() }}</h1>
         <div class="mt-5 flex flex-col md:flex-row md:justify-between">
             <!-- Filters -->
-            <!-- <a-category-filters :filters="filters" @on-filter="onFilter" /> -->
-            <a-category-filters />
+            <!-- <a-listing-filters :filters="filters" @on-filter="onFilter" /> -->
+            <a-listing-filters />
 
             <!-- Listings -->
             <div class="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4">
