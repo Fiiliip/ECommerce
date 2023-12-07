@@ -1,0 +1,8 @@
+{
+    "name": "fiiliip/emarketplace-plugin",
+    "type": "october-plugin",
+    "description": "Plugin for EMarketplace.",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}
