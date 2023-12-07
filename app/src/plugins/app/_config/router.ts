@@ -19,6 +19,12 @@ const router = createRouter({
       name: 'Listing',
       component: () => import('@/plugins/app@emarketplace/listing/listing.vue')
     },
+    {
+      path: '/new-listing',
+      name: 'New Listing',
+      component: () => import('@/plugins/app@emarketplace/new-listing/new-listing.vue'),
+      // meta: { requiresAuth: true }
+    },
     // Auth
     {
       path: '/auth/login',
