@@ -6,7 +6,7 @@
                 <p class="text-sm">Zadajte svoj e-mail a my Vám pošleme verifikačný kód na resetovanie hesla.</p>
 
                 <form @submit.prevent="login()" class="mt-4 space-y-9">
-                    <z-auth-input v-model="v$.form.email" label="E-Mail" type="email" autocomplete="email" />
+                    <z-form-input v-model="v$.form.email" label="E-Mail" type="email" autocomplete="email" />
 
                     <div>
                         <div class="mt-5">

@@ -1,7 +1,7 @@
 <template>
     <div class="py-20 mx-5">
         <section class="flex justify-center">
-            <a-searchbar></a-searchbar>
+            <z-searchbar></z-searchbar>
         </section>
         
         <section class="mt-20">

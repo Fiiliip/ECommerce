@@ -5,8 +5,8 @@
                 <h2 class="text-2xl font-bold leading-9 tracking-tight">Prihlásiť sa</h2>
 
                 <form @submit.prevent="login()" class="mt-4 space-y-9">
-                    <z-auth-input v-model="v$.form.email" label="E-Mail" type="email" autocomplete="email" />
-                    <z-auth-input v-model="v$.form.password" label="Heslo" type="password" autocomplete="password"/>
+                    <z-form-input v-model="v$.form.email" label="E-Mail" type="email" autocomplete="email" />
+                    <z-form-input v-model="v$.form.password" label="Heslo" type="password" autocomplete="password"/>
 
                     <div>
                         <div class="flex items-center justify-between">

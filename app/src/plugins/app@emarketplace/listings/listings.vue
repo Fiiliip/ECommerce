@@ -1,7 +1,7 @@
 <template>
     <div class="my-5 mx-5">
         <div class="flex justify-center">
-            <a-searchbar :showCategory="true" />
+            <z-searchbar :showCategory="true" />
         </div>
         <h1 class="mt-5 text-3xl font-bold">{{ getCategoryTitle() }}</h1>
         <!-- mt-5 flex flex-row md:justify-between -->

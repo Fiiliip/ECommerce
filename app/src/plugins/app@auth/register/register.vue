@@ -6,12 +6,12 @@
 
                 <form @submit.prevent="register()" class="mt-4 space-y-9">
                     <div class="md:flex md:space-y-0 space-y-6">
-                        <z-auth-input class="md:me-1" v-model="v$.form.name" name="first-name" type="text" label="Meno" autocomplete="given-name"/>
-                        <z-auth-input class="md:ms-1" v-model="v$.form.surname" name="last-name" type="text" label="Priezvisko" autocomplete="family-name"/>
+                        <z-form-input class="md:me-1" v-model="v$.form.name" name="first-name" type="text" label="Meno" autocomplete="given-name"/>
+                        <z-form-input class="md:ms-1" v-model="v$.form.surname" name="last-name" type="text" label="Priezvisko" autocomplete="family-name"/>
                     </div>
 
-                    <z-auth-input v-model="v$.form.email" label="E-Mail" type="email" autocomplete="email" />
-                    <z-auth-input v-model="v$.form.password" label="Heslo" type="password" autocomplete="password"/>
+                    <z-form-input v-model="v$.form.email" label="E-Mail" type="email" autocomplete="email" />
+                    <z-form-input v-model="v$.form.password" label="Heslo" type="password" autocomplete="password"/>
 
                     <div>
                         <div class="flex items-center justify-between">
