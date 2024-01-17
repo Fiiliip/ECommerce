@@ -13,8 +13,8 @@
             <!-- <div class="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-4">
                 <z-listing-card v-for="listing in listings" :key="listing.id" :listing="listing" />
             </div> -->
-            <div class="grid gap-3 grid-cols xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-                <z-listing-card v-for="listing in listings" :key="listing.id" :listing="listing" />
+            <div class="w-full grid gap-3 grid-cols xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
+                <z-listing-card v-for="(listing, listingIdx) in $skelet(listings, 10)" :key="`listing-${listingIdx}`" :listing="listing" />
             </div>
         </div>
     </div>
@@ -29,7 +29,7 @@ export default {
     },
 
     async mounted() {
-        this.listings = await this._getListings()
+        this.listings = await this._getListings(new URLSearchParams(this.$route.query).toString())
     }
 }
 </script>

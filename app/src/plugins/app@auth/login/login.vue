@@ -64,18 +64,23 @@ export default {
         async login() {
             if (!await this.v$.$validate()) return
 
+            this.$loader.startLoading(this.$t('Signing in...'))
+
             try {
-                // TODO: Send AXIOS request.
+                await this.$store.dispatch('auth/login', { login: this.form.email, password: this.form.password })
+                await this.$store.dispatch('customer/customerInfo')
 
                 if (this.rememberMe) {
                     localStorage.setItem('emarketplace_user_remember_me', 'true')
                 } else {
                     localStorage.setItem('emarketplace_user_remember_me', 'false')
                 }
-
+                
                 this.$router.replace({ name: 'Home' })
             } catch(error) {
-                console.log(error)
+                this.$toast.error(error.response)
+            } finally {
+                this.$loader.stopLoading()
             }
         }
     }

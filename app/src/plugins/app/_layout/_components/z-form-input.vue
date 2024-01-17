@@ -13,7 +13,7 @@
                 </button>
 
                 <!-- Options -->
-                <div v-if="showDropdown" :class="{ 'h-64 overflow-y-scroll' : dropdownOptions }" class="absolute w-full mt-2 bg-white divide-y divide-zinc-300 rounded-lg shadow z-10">
+                <div v-if="showDropdown" :class="{ 'max-h-64 overflow-y-scroll' : dropdownOptions }" class="absolute w-full mt-2 bg-white divide-y divide-zinc-300 rounded-lg shadow z-10">
                     <ul class="py-2 text-sm">
                         <li @click="value = option, showDropdown = false" class="cursor-pointer" v-for="option in dropdownOptions" :key="option.id">
                             <p class="px-4 py-2 hover:bg-zinc-100">{{ option.title }}</p>

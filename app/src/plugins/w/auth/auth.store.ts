@@ -10,7 +10,7 @@ if (localStorage.getItem('emarketplace_user_rememberMe') === 'false') {
 	// If time difference is bigger than value set in authDuration.
 	if (userLastSeen && currentDate.getTime() - new Date(userLastSeen).getTime() > authDuration) {
 		localStorage.removeItem('emarketplace_user_token')
-		localStorage.removeItem('emarketplace_user_user')
+		localStorage.removeItem('emarketplace_user')
 	}
 }
 
@@ -19,7 +19,7 @@ export default {
 	state: {
 		status: '',
 		_token: localStorage.getItem('emarketplace_user_token') || '',
-		user: JSON.parse(localStorage.getItem('emarketplace_user_user') || '{}'),
+		user: JSON.parse(localStorage.getItem('emarketplace_user') || '{}'),
 	},
 	mutations: {
 		auth_request(state: any) {
@@ -34,14 +34,14 @@ export default {
 
 			if (data.user) {
 				state.user = data.user
-				localStorage.setItem('emarketplace_user_user', JSON.stringify(data.user))
+				localStorage.setItem('emarketplace_user', JSON.stringify(data.user))
 			}
 		},
 		auth_error(state: any) {
 			state.status = 'error'
 			state._token = ''
 			localStorage.removeItem('emarketplace_user_token')
-			localStorage.removeItem('emarketplace_user_user')
+			localStorage.removeItem('emarketplace_user')
 		},
 		logout(state: any) {
 			state.status = ''
@@ -49,7 +49,7 @@ export default {
 			state.user = null
 
 			localStorage.removeItem('emarketplace_user_token')
-			localStorage.removeItem('emarketplace_user_user')
+			localStorage.removeItem('emarketplace_user')
 
 			window.location.reload()
 		}

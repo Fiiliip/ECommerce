@@ -1,7 +1,8 @@
 <template>
-    <div @click="$router.push({ name: 'Listing', params: { id: listing.id }})" class="p-3 bg-white hover:bg-zinc-100 rounded-md shadow-md cursor-pointer">
+    <div v-if="listing" @click="$router.push({ name: 'Listing', params: { id: listing.id }})" class="p-3 bg-white hover:bg-zinc-100 rounded-md shadow-md cursor-pointer">
         <!-- w-full h-40 mx-auto object-cover rounded-lg -->
-        <img :src="listing.images[0].url" :alt="listing.title" class="max-w-full mx-auto rounded-lg" />
+        <!-- <img v-if="listing?.images" :src="listing.images[0].url" :alt="listing.title" class="max-w-full mx-auto rounded-lg" /> -->
+        <img src="https://picsum.photos/300/200" :alt="listing.title" class="max-w-full mx-auto rounded-lg" />
         <div class="mt-2">
             <h3 class="h-10 text-sm font-semibold text-truncate">{{ listing.title }}</h3>
             <div class="line my-2"></div>
@@ -20,18 +21,19 @@
                 </div>
                 <div class="flex ml-1 items-center">
                     <img class="h-4 w-4 mt-[1px] mx-auto" src="@/plugins/app/_assets/_icons/calendar.svg">
-                    <p class="ml-1 text-sm font-semibold">{{ listing.date_created }}</p>
+                    <p class="ml-1 text-sm font-semibold">{{ getFormattedDate(listing.created_at) }}</p>
                 </div> 
             </div>
         </div>
     </div>
+    <div v-else class="skelet block h-[200px] w-full rounded-md shadow-md"></div>
 </template>
 
 <script>
 export default {
     props: {
         listing: {
-                type: Object,
+                type: [Object, null],
                 required: true,
             },
         },

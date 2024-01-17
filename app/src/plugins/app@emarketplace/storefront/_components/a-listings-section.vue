@@ -2,7 +2,7 @@
     <section>
         <h1 class="text-lg font-bold">{{ title }}</h1>
         <div class="grid justify-center grid-cols xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap">
-            <z-listing-card class="m-1" v-for="listing in listings" :key="listing.id" :listing="listing"/>
+            <z-listing-card class="m-1" v-for="(listing, listingIdx) in $skelet(listings, 10)" :key="`listing-${listingIdx}`" :listing="listing"/>
         </div>
     </section>
 </template>

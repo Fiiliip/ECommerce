@@ -73,8 +73,11 @@ export default {
         async register() {
             if (!await this.v$.$validate()) return
 
+            this.$loader.startLoading(this.$t('Signing up...'))
+
             try {
-                // TODO: Send AXIOS request.
+                await this.$store.dispatch('auth/signup', this.form)
+                await this.$store.dispatch('customer/customerInfo')
 
                 if (this.rememberMe) {
                     localStorage.setItem('emarketplace_user_remember_me', 'true')
@@ -84,7 +87,9 @@ export default {
 
                 this.$router.replace({ name: 'Home' })
             } catch(error) {
-                console.log(error)
+                this.$toast.error(error.response)
+            } finally {
+                this.$loader.stopLoading()
             }
         }
     }

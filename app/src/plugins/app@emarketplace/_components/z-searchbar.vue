@@ -12,7 +12,7 @@
             </button>
 
             <!-- Dropdown -->
-            <div :class="[ showDropdown ? 'block' : 'hidden' ]" class="absolute w-full h-64 overflow-y-scroll mt-2 bg-white divide-y divide-zinc-300 rounded-lg shadow z-10">
+            <div :class="[ showDropdown ? 'block' : 'hidden' ]" class="absolute w-full max-h-64 overflow-y-scroll mt-2 bg-white divide-y divide-zinc-300 rounded-lg shadow z-10">
                 <ul class="py-2 text-sm">
                     <li @click="query.category = category.slug" class="cursor-pointer" v-for="category in categories" :key="category.id">
                         <a @click="search()" :href="query.search ? `/listings/?category=${category.slug}&search=${query.search.replace(' ', '+')}` : `/listings/?category=${category.slug}`" class="block px-4 py-2 hover:bg-zinc-100">{{ category.title }}</a>

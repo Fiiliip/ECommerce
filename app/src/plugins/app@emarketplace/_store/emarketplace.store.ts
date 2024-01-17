@@ -23,9 +23,7 @@ export default {
 
         categories_load({ commit }: { commit: any }) {
             return new Promise((resolve, reject) => {
-                axios.get('api/v1/mall/categories').then((response: any) => {
-                    // TODO: Change back to this code.
-                    // const categories = response.data
+                axios.get('http://127.0.0.1:8000/api/v1/mall/categories').then((response: any) => {
                     const categories = response
                     commit('set_categories', categories)
                     resolve(response)

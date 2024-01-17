@@ -14,13 +14,14 @@
                     <div>
                         <div>
                             <div class="flex items-center">
-                                <input type="checkbox" class="h-4 w-4 rounded border-gray-300 accent-zinc-500 focus:ring-zinc-600" />
-                                <label class="ml-3 block text-sm leading-6">Súhlasim s <a href="#" class="font-medium">podmienkami</a> inzercie</label>
+                                <input v-model="v$.userAgreement.$model" type="checkbox" :class="{'border-red-500 accent-red-500': (v$.userAgreement.$dirty && v$.userAgreement.$error && !v$.userAgreement.$model)}" class="h-4 w-4 rounded border-gray-300 accent-zinc-500 focus:ring-zinc-600" />
+                                <label :class="{'text-red-500': (v$.userAgreement.$dirty && v$.userAgreement.$error && !v$.userAgreement.$model)}" class="ml-3 block text-sm leading-6">Súhlasim s <a href="#" class="font-medium hover:text-zinc-400">podmienkami</a> inzercie.</label>
                             </div>
+                            <div v-if="v$.userAgreement.$dirty && v$.userAgreement.$error && !v$.userAgreement.$model" class="mt-1 text-sm text-red-500">* This field is required.</div>
                         </div>
 
                         <div class="sm:max-w-[480px] mt-5 mx-auto">
-                            <button type="submit" @click.prevent="createListing()" class="flex w-full justify-center rounded-md bg-zinc-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600">
+                            <button :disabled="this.$loader.isLoading()" type="submit" @click.prevent="createListing()" :class="{'!bg-zinc-300': this.$loader.isLoading()}" class="flex w-full justify-center rounded-md bg-zinc-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600">
                                 Vytvoriť inzerát
                             </button>
                         </div>
@@ -43,15 +44,17 @@ export default {
             v$: useVuealidate(),
             form: {
                 category: null,
+                category_id: null,
                 title: '',
                 description: '',
-                author_id: null,
+                user_id: null, // Author ID.
                 location: null,
                 price: 0,
                 images: null
             },
             categories: this.$store.getters['emarketplace/categories'],
-            showDropdown: false
+            userAgreement: false,
+            showDropdown: false,
         }
     },
 
@@ -63,20 +66,28 @@ export default {
                 description: { required },
                 location: { required },
                 price: { required }
-            }
+            },
+            userAgreement: { agreed: (value) => value === true }
         }
     },
 
     methods: {
         async createListing() {
             if (!await this.v$.$validate()) return
+            
+            this.$loader.startLoading()
+
+            this.form.category_id = this.form.category.id
+            this.form.user_id = this.$store.getters['auth/user'].id
 
             try {
-                console.log('form', this.form)
-                // TODO: Send AXIOS request.
-                // this.$router.replace({ name: 'Home' })
+                await this.$axios.post(`/api/v1/mall/listing`, this.form)
+                this.$toast.success('Listing was created.', 'top')
+                this.$router.replace({ name: 'Home' })
             } catch(error) {
-                console.log(error)
+                this.$toast.error(error.response, 'top')
+            } finally {
+                this.$loader.stopLoading()
             }
         }
     }

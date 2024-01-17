@@ -7,11 +7,11 @@
         <section class="mt-20">
             <h1 class="text-lg font-bold">Kategórie</h1>
             <div class="flex flex-wrap">
-                <a-category-card class="m-1" v-for="(category, categoryIdx) in categories" :key="categoryIdx" :category="category"></a-category-card>
+                <a-category-card class="m-1" v-for="(category, categoryIdx) in $skelet(categories, 10)" :key="`category-${categoryIdx}`" :category="category"></a-category-card>
             </div>
         </section>
 
-        <a-listings-section class="mt-20" v-for="listingSection in listingSections" :key="listingSection" :title="listingSection.title"></a-listings-section>
+        <a-listings-section class="mt-20" v-for="listingSection in listingSections" :key="listingSection" :title="listingSection.title" :query="listingSection.query"></a-listings-section>
     </div>
 </template>
 
@@ -23,11 +23,11 @@ export default {
             listingSections: [
                 {
                     title: 'Najnovšie inzeráty',
-                    query: '',
+                    query: 'mostRecent=3',
                 },
                 {
                     title: 'Najpopulárnejšie inzeráty',
-                    query: '',
+                    query: 'mostViewed=5',
                 }
             ],
         }

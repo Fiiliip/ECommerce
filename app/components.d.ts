@@ -11,6 +11,7 @@ declare module 'vue' {
     ACategoryCard: typeof import('./src/plugins/app@emarketplace/storefront/_components/a-category-card.vue')['default']
     AFooter: typeof import('./src/plugins/app/_layout/footer/a-footer.vue')['default']
     AHeader: typeof import('./src/plugins/app/_layout/header/a-header.vue')['default']
+    ALanguagePopover: typeof import('./src/plugins/w/i18n/components/a-language-popover.vue')['default']
     AListingFilters: typeof import('./src/plugins/app@emarketplace/listings/_components/a-listing-filters.vue')['default']
     AListingsSection: typeof import('./src/plugins/app@emarketplace/storefront/_components/a-listings-section.vue')['default']
     App: typeof import('./src/plugins/app/_config/App.vue')['default']
