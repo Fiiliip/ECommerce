@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Image
+
+# Model Form Field configuration
+form: $/fiiliip/emarketplace/models/image/fields.yaml
+
+# Model Class name
+modelClass: Fiiliip\EMarketplace\Models\Image
+
+# Default redirect location
+defaultRedirect: fiiliip/emarketplace/images
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: fiiliip/emarketplace/images/update/:id
+    redirectClose: fiiliip/emarketplace/images
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: fiiliip/emarketplace/images
+    redirectClose: fiiliip/emarketplace/images
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

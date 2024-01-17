@@ -22,7 +22,7 @@ class Image extends Model
     /**
      * @var array fillable attributes are mass assignable
      */
-    protected $fillable = [];
+    protected $fillable = ['listing_id', 'image_path'];
 
     /**
      * @var array rules for validation
@@ -60,13 +60,19 @@ class Image extends Model
     /**
      * @var array hasOne and other relations
      */
-    public $hasOne = [];
+    public $hasOne = [
+        // 'listing' => ['Fiiliip\EMarketplace\Models\Listing']
+    ];
     public $hasMany = [];
-    public $belongsTo = [];
+    public $belongsTo = [
+        'listing' => ['Fiiliip\EMarketplace\Models\Listing']
+    ];
     public $belongsToMany = [];
     public $morphTo = [];
     public $morphOne = [];
     public $morphMany = [];
-    public $attachOne = [];
+    public $attachOne = [
+        // 'image' => ['System\Models\File']
+    ];
     public $attachMany = [];
 }

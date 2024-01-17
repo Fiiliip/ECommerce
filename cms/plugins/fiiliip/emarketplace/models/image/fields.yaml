@@ -1,0 +1,25 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+    listing_id:
+        label: Listing ID
+        disabled: true
+    image_path:
+        label: Image Path
+    # image:
+    #     label: Image
+    #     type: fileupload
+    #     mode: image
+    #     useCaption: true
+    #     thumbOptions:
+    #         mode: crop
+    #         extension: auto
+    #     imageWidth: 1000
+    #     imageHeight: 1000
+    #     span: auto
+

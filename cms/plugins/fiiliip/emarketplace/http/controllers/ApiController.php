@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Validator;
 
 use Fiiliip\EMarketplace\Models\Category;
 use Fiiliip\EMarketplace\Models\Listing;
+use Fiiliip\EMarketplace\Models\Image;
+
+use File;
 
 use RainLab\User\Models\User;
 
@@ -40,6 +43,14 @@ class ApiController extends Controller {
 
         $listings = $query->get();
 
+        foreach ($listings as $listing) {
+            $images = Image::where('listing_id', $listing->id)->get();
+            foreach ($images as $image) {
+                $image->url = env('STORAGE_URL').$image->image_path;
+            }
+            $listing->images = $images;
+        }
+
         return response()->json($listings, 200);
     }
 
@@ -59,10 +70,13 @@ class ApiController extends Controller {
                 'email' => $user->email
             ]
         ];
-        $listing->location = 'Poprad'; // TODO: Add location to listing model.
-        // $listing->images = $listing->images()->get();
-
         $listing->increment('views'); // TODO: Make better way to increment views. Views should not be incremented from the same session.
+        
+        $images = Image::where('listing_id', $listing->id)->get();
+        foreach ($images as $image) {
+            $image->url = env('STORAGE_URL').$image->image_path;
+        }
+        $listing->images = $images;
 
         return response()->json($listing, 200);
     }
@@ -74,7 +88,9 @@ class ApiController extends Controller {
             'user_id' => 'required',
             'price' => 'required',
             'description' => 'required',
-            'images' => 'required'
+            // 'images' => 'required|array',
+            // 'images.*' => 'required|image'
+            // 'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
 
         $validator = Validator::make($request->all(), $rules);
@@ -101,13 +117,24 @@ class ApiController extends Controller {
 
         $listing = new Listing;
         $listing->fill($data);
-
-        $listing->images()->create(['data' => Input::file('images')]);
-
-        if ($listing->save()) {
-            return response()->json([], 201, []);
-        } else {
+        if (!$listing->save()) {
             return response()->json(['error' => 'Listing could not be created.'], 500, []);
         }
+
+        foreach ($data['images'] as $image) {
+            list($type, $imageData) = explode(';', $image['url']);
+            list(, $imageData)      = explode(',', $imageData);
+
+            $decodedImage = base64_decode($imageData);
+
+            $imageName =  time() . '_' . $image['name'];
+            $image_path = 'app/uploads/public/' . $imageName;
+
+            file_put_contents(storage_path($image_path), $decodedImage);
+
+            Image::create(['listing_id' => $listing->id, 'image_path' => $image_path]);
+        }
+
+        return response()->json([], 201, []);
     }
 }

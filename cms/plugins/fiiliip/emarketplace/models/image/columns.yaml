@@ -1,0 +1,13 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    listing_id:
+        label: Inzerát
+        relation: listing
+        select: title
+        searchable: true

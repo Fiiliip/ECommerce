@@ -28,6 +28,24 @@
                 <input type="number" v-model="value" :class="{'ring-red-500': (modelValue.$dirty && modelValue.$error)}" class="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-zinc-600 sm:text-sm sm:leading-6">
                 <p class="ml-1">€</p>
             </div>
+            <!-- Images -->
+            <div v-else-if="type=='images'" class="flex gap-2">
+                <div v-for="(image, imageIdx) in value" :key="`image-${imageIdx}`" class="listing-image relative">
+                    <img :src="image.url" :alt="image.name" class="h-20 w-20 rounded-md">
+                    <button @click="value.splice(imageIdx, 1)" class="absolute hidden -top-1 -right-1 w-5 h-5 items-center justify-center bg-red-400 rounded-full">
+                        <img class="w-3 h-3" src="@/plugins/app/_assets/_icons/eye.svg">
+                    </button>
+                </div>
+                <div v-if="value == null || value?.length < 5" class="relative">
+                    <div class="h-20 w-20 text-center border-2 border-dashed rounded-md">
+                        <label for="image" class="flex w-full h-full justify-center items-center text-sm cursor-pointer hover:opacity-70">
+                            <img class="w-8 h-8" src="@/plugins/app/_assets/_icons/eye.svg">
+                        </label>
+                    </div>
+                    <input @change="uploadImage($event)" id="image" type="file" accept="image/*" class="hidden" multiple>
+                </div>
+            </div>
+            
             <!-- Input -->
             <input v-else v-model="value" :type="type" :autocomplete="autocomplete" :class="{'ring-red-500': (modelValue.$dirty && modelValue.$error)}" class="block w-full rounded-md border-0 px-2 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-zinc-600 sm:text-sm sm:leading-6" />
             
@@ -84,6 +102,36 @@ export default {
                 this.$emit('update:modelValue', modelValue)
             }
         }
+    },
+
+    methods: {
+        uploadImage(event) {
+            if (this.value == null) {
+                this.value = []
+            }
+
+            const files = event.target.files
+
+            for (let i = 0; i < files.length; i++) {
+                const file = files[i];
+                const reader = new FileReader() 
+
+                reader.readAsDataURL(file)
+
+                reader.onload = (e) => {
+                    this.value.push({
+                        name: file.name,
+                        url: e.target.result,
+                    })
+                }
+            }
+        }
     }
 }
 </script>
+
+<style lang="sass" scoped>
+.listing-image:hover button
+    display: flex
+
+</style>

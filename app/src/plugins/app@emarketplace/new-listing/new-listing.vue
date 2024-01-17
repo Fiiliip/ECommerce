@@ -10,6 +10,7 @@
                     <z-form-input v-model="v$.form.description" label="Popis" type="textarea"/>
                     <z-form-input v-model="v$.form.location" label="Lokácia" type="text"/>
                     <z-form-input v-model="v$.form.price" label="Cena" type="price"/>
+                    <z-form-input v-model="v$.form.images" label="Fotografie" type="images"/>
 
                     <div>
                         <div>
@@ -65,7 +66,8 @@ export default {
                 title: { required },
                 description: { required },
                 location: { required },
-                price: { required }
+                price: { required },
+                images: { required }
             },
             userAgreement: { agreed: (value) => value === true }
         }
