@@ -81,15 +81,31 @@ class Plugin extends PluginBase
      */
     public function registerNavigation()
     {
-        return []; // Remove this line to activate
-
         return [
             'emarketplace' => [
                 'label'       => 'EMarketplace',
-                'url'         => Backend::url('fiiliip/emarketplace/mycontroller'),
-                'icon'        => 'icon-leaf',
+                'url'         => Backend::url('fiiliip/emarketplace/listings'),
+                'icon'        => 'icon-shopping-cart',
                 'permissions' => ['fiiliip.emarketplace.*'],
                 'order'       => 500,
+
+                'sideMenu' => [
+                    'listings' => [
+                        'label' =>  'Listings',
+                        'icon'  =>  'icon-list',
+                        'url'   =>  Backend::url('fiiliip/emarketplace/listings'),
+                    ],
+                    'categories' => [
+                        'label' =>  'Categories',
+                        'icon'  =>  'icon-folder',
+                        'url'   =>  Backend::url('fiiliip/emarketplace/categories')
+                    ],
+                    // 'locations' => [
+                    //     'label' =>  'Locations',
+                    //     'icon'  =>  'icon-map-marker',
+                    //     'url'   =>  Backend::url('fiiliip/emarketplace/locations')
+                    // ],
+                ]
             ],
         ];
     }

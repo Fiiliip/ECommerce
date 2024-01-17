@@ -1,0 +1,19 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: left
+    title:
+        label: Názov
+        required: true
+        span: left
+    slug:
+        label: Slug
+        required: true
+        span: right
+
+

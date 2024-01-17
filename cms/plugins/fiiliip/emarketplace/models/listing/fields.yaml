@@ -1,0 +1,34 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    id:
+        label: ID
+        disabled: true
+        span: left
+    category:
+        label: Kategória
+        type: relation
+        select: title
+        span: right
+    user:
+        label: Používateľ
+        type: relation
+        select: username
+        span: left
+    title:
+        label: Názov
+        type: text
+    description:
+        label: Popis
+        type: textarea
+    price:
+        label: Cena
+        type: number
+        span: left
+    views:
+        label: Počet zobrazení
+        type: number
+        span: right
+        disabled: true

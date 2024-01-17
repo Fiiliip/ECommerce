@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Listing
+
+# Model Form Field configuration
+form: $/fiiliip/emarketplace/models/listing/fields.yaml
+
+# Model Class name
+modelClass: Fiiliip\EMarketplace\Models\Listing
+
+# Default redirect location
+defaultRedirect: fiiliip/emarketplace/listings
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: fiiliip/emarketplace/listings/update/:id
+    redirectClose: fiiliip/emarketplace/listings
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: fiiliip/emarketplace/listings
+    redirectClose: fiiliip/emarketplace/listings
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

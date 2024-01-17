@@ -1,0 +1,27 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    id:
+        label: ID
+        searchable: true
+    title:
+        label: Názov
+        searchable: true
+    username:
+        label: Používateľské meno
+        relation: user
+        select: username
+        searchable: true
+    category_title:
+        label: Kategória
+        relation: category
+        select: title
+        searchable: true
+    location:
+        label: Lokácia
+        searchable: true
+    price:
+        label: Cena
+        searchable: false
