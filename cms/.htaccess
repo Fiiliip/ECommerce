@@ -19,6 +19,12 @@
     # RewriteRule (.*) https://%{SERVER_NAME}/$1 [L,R=301]
 
     ##
+    ## Handle Authorization Header
+    ##
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    ##
     ## Black listed folders
     ##
     RewriteRule ^bootstrap/.* index.php [L,NC]

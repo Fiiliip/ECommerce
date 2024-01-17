@@ -1,0 +1,12 @@
+1.0.1: First version of UserApi
+1.0.2: 
+- Added support for Phone Number and Phone Verification
+- phone_number field added to users table
+- phone_verification_code field added to users table
+- is_phone_verified field added to users table
+- 2023_02_21_1_add_phone_number_to_users_table.php
+1.0.3:
+- Added degree column
+- Added degree field to users table
+- 2023_09_16_1_add_degree_to_users_table.php
+
