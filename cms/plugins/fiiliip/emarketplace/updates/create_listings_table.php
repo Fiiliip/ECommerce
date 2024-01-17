@@ -10,22 +10,20 @@ class CreateListingsTable extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id');
 
-            $table->string('title');
             $table->integer('category_id')->unsigned();
-
             $table->integer('user_id')->unsigned();
 
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->decimal('price', 10, 2);
-            $table->integer('location_id')->unsigned();
+            $table->string('location');
             $table->integer('views')->default(0);
 
-            $table->text('description')->nullable();
-
-            $table->timestamps();    
+            $table->timestamps();
         });
     }
 
-    public function drop() {
+    public function down() {
         Schema::dropIfExists('fiiliip_emarketplace_listings');
     }
 }

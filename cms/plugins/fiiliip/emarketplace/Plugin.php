@@ -100,6 +100,11 @@ class Plugin extends PluginBase
                         'icon'  =>  'icon-folder',
                         'url'   =>  Backend::url('fiiliip/emarketplace/categories')
                     ],
+                    'images' => [
+                        'label' =>  'Images',
+                        'icon'  =>  'icon-image',
+                        'url'   =>  Backend::url('fiiliip/emarketplace/images')
+                    ],
                     // 'locations' => [
                     //     'label' =>  'Locations',
                     //     'icon'  =>  'icon-map-marker',

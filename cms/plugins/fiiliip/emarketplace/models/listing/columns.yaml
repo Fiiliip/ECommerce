@@ -10,7 +10,7 @@ columns:
         label: Názov
         searchable: true
     username:
-        label: Používateľské meno
+        label: Používateľ
         relation: user
         select: username
         searchable: true

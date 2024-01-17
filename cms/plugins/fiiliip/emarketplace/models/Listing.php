@@ -27,7 +27,7 @@ class Listing extends Model
         'price',
         'user_id',
         'category_id',
-        'location_id',
+        'location',
         'description',
         'views',
     ];
@@ -69,11 +69,12 @@ class Listing extends Model
      * @var array hasOne and other relations
      */
     public $hasOne = [];
-    public $hasMany = [];
+    public $hasMany = [
+        'images' => ['Fiiliip\EMarketplace\Models\Image']
+    ];
     public $belongsTo = [
         'user' => ['RainLab\User\Models\User'],
         'category' => ['Fiiliip\EMarketplace\Models\Category'],
-        // 'location' => ['Fiiliip\EMarketplace\Models\Location'],
     ];
     public $belongsToMany = [];
     public $morphTo = [];
