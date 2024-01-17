@@ -19,7 +19,7 @@
             <div class="w-full md:w-[75%] lg:w-full h-full px-2 mt-5 md:mt-0">
                 <h3 v-if="listing?.title" class="text-lg font-semibold">{{ listing.title }}</h3>
                 <div v-else class="skelet h-7 w-2/3"></div>
-                <p v-if="listing?.price" class="mt-2">Cena: <span v-if="listing?.price" class="font-medium">{{ listing.price }}</span></p>
+                <p v-if="listing?.price" class="mt-2">Cena: <span v-if="listing?.price" class="font-medium">{{ listing.price }} €</span></p>
                 <p v-else class="skelet h-6 w-2/6 mt-2"></p>
                 <div v-if="listing?.author.contact" class="mt-2">
                     <h4 class="font-medium">Kontakt</h4>
@@ -66,7 +66,7 @@ export default {
 
     async mounted() {
         this.listing = await this._getListing(this.$route.params.id)
-        // this.selectedImage = this.listing.images[0]
+        this.selectedImage = this.listing.images[0]
     }
 }
 </script>

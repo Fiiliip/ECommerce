@@ -1,13 +1,14 @@
 <template>
     <div v-if="listing" @click="$router.push({ name: 'Listing', params: { id: listing.id }})" class="p-3 bg-white hover:bg-zinc-100 rounded-md shadow-md cursor-pointer">
         <!-- w-full h-40 mx-auto object-cover rounded-lg -->
-        <!-- <img v-if="listing?.images" :src="listing.images[0].url" :alt="listing.title" class="max-w-full mx-auto rounded-lg" /> -->
-        <img src="https://picsum.photos/300/200" :alt="listing.title" class="max-w-full mx-auto rounded-lg" />
+        <img v-if="listing?.images[0]" :src="listing.images[0].url" :alt="listing.title" class="max-w-full mx-auto rounded-lg" />
+        <!-- @/plugins/app/_assets/_icons/eye.svg -->
+        <img v-else src="https://picsum.photos/300/200" :alt="listing.title" class="max-w-full mx-auto rounded-lg" />
         <div class="mt-2">
             <h3 class="h-10 text-sm font-semibold text-truncate">{{ listing.title }}</h3>
             <div class="line my-2"></div>
             <div class="flex justify-between items-center overflow-hidden">
-                <p class="mr-1 text-sm font-bold">{{ listing.price }}</p>
+                <p class="mr-1 text-sm font-bold">{{ listing.price }} €</p>
                 <div class="flex ml-1 items-center">
                     <img class="h-4 w-4 mt-[1px] mx-auto" src="@/plugins/app/_assets/_icons/location.svg">
                     <p class="ml-1 text-sm font-semibold">{{ listing.location }}</p>
