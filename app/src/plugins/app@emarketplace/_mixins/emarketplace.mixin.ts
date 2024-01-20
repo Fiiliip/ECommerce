@@ -25,9 +25,14 @@ export default {
         },
 
         getFormattedDate(currentDateFormat: string) {
-            // Convert date format "YYYY-MM-DD HH:MM:SS" to "DD.MM.YYYY".
+            // Converts date format "YYYY-MM-DD HH:MM:SS" to "DD.MM.YYYY".
             const date = new Date(currentDateFormat)
             return `${date.getDate()}.${date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1}.${date.getFullYear()}`
+        },
+
+        getFormattedPrice(price: any) {
+            // Converts price from e.g. "23701.00" to "23 701 €" or "9.99" to "9,99 €".
+            return Number(price).toLocaleString('sk-SK', { style: 'currency', currency: 'EUR' }).replace(/,00/g, '')
         }
     }
 }
