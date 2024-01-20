@@ -9,8 +9,8 @@ class CreateCategoriesTable extends Migration {
         Schema::create('fiiliip_emarketplace_categories', function(Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->string('title');
-            $table->string('slug');
+            $table->string('title')->unique();
+            $table->string('slug')->unique();
         });
     }
 

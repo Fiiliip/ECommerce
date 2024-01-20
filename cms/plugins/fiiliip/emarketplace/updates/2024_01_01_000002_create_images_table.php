@@ -13,7 +13,9 @@ class CreateImagesTable extends Migration
             $table->increments('id');
 
             $table->integer('listing_id')->unsigned();
-            $table->string('image_path');
+            $table->foreign('listing_id')->references('id')->on('fiiliip_emarketplace_listings')->onUpdate('cascade')->onDelete('cascade');
+
+            $table->string('image_path')->unique();
 
             $table->timestamps();
         });
@@ -22,5 +24,16 @@ class CreateImagesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('fiiliip_emarketplace_images');
+
+        // TODO: Remove the images from the storage.
+        $storagePath = storage_path('app/uploads/public');
+        if (file_exists($storagePath)) {
+            $files = glob($storagePath . '/*');
+            foreach ($files as $file) {
+                if (is_file($file)) {
+                    unlink($file);
+                }
+            }
+        }
     }
 }
