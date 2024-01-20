@@ -35,7 +35,14 @@ class Listing extends Model
     /**
      * @var array rules for validation
      */
-    public $rules = [];
+    public $rules = [
+        'title' => 'required',
+        'price' => 'required',
+        'user_id' => 'required',
+        'category_id' => 'required',
+        'location' => 'required',
+        'description' => 'required',
+    ];
 
     /**
      * @var array Attributes to be cast to native types
@@ -73,8 +80,8 @@ class Listing extends Model
         'images' => ['Fiiliip\EMarketplace\Models\Image']
     ];
     public $belongsTo = [
-        'user' => ['RainLab\User\Models\User'],
         'category' => ['Fiiliip\EMarketplace\Models\Category'],
+        'user' => ['RainLab\User\Models\User'],
     ];
     public $belongsToMany = [];
     public $morphTo = [];
@@ -82,6 +89,6 @@ class Listing extends Model
     public $morphMany = [];
     public $attachOne = [];
     public $attachMany = [
-        'images' => ['System\Models\File', 'public' => false]
+        'images' => ['System\Models\File']
     ];
 }

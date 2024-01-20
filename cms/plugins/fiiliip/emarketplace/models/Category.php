@@ -24,12 +24,14 @@ class Category extends Model
     /**
      * @var array fillable attributes are mass assignable
      */
-    protected $fillable = ['title'];
+    protected $fillable = ['title', 'slug'];
 
     /**
      * @var array rules for validation
      */
-    public $rules = [];
+    public $rules = [
+        'title' => 'required'
+    ];
 
     /**
      * @var array Attributes to be cast to native types

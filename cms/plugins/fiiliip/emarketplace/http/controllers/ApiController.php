@@ -3,12 +3,11 @@
 use Backend\Classes\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use System\Models\File;
 
 use Fiiliip\EMarketplace\Models\Category;
 use Fiiliip\EMarketplace\Models\Listing;
 use Fiiliip\EMarketplace\Models\Image;
-
-use File;
 
 use RainLab\User\Models\User;
 
@@ -43,12 +42,9 @@ class ApiController extends Controller {
 
         $listings = $query->get();
 
+        // Get images for each listing.
         foreach ($listings as $listing) {
-            $images = Image::where('listing_id', $listing->id)->get();
-            foreach ($images as $image) {
-                $image->url = env('STORAGE_URL').$image->image_path;
-            }
-            $listing->images = $images;
+            $listing->images = $this->getImages($listing);
         }
 
         return response()->json($listings, 200);
@@ -72,11 +68,8 @@ class ApiController extends Controller {
         ];
         $listing->increment('views'); // TODO: Make better way to increment views. Views should not be incremented from the same session.
         
-        $images = Image::where('listing_id', $listing->id)->get();
-        foreach ($images as $image) {
-            $image->url = env('STORAGE_URL').$image->image_path;
-        }
-        $listing->images = $images;
+        // Get images for the listing.
+        $listing->images = $this->getImages($listing);
 
         return response()->json($listing, 200);
     }
@@ -89,7 +82,6 @@ class ApiController extends Controller {
             'price' => 'required',
             'description' => 'required',
             // 'images' => 'required|array',
-            // 'images.*' => 'required|image'
             // 'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
 
@@ -121,20 +113,38 @@ class ApiController extends Controller {
             return response()->json(['error' => 'Listing could not be created.'], 500, []);
         }
 
-        foreach ($data['images'] as $image) {
-            list($type, $imageData) = explode(';', $image['url']);
-            list(, $imageData)      = explode(',', $imageData);
+        foreach ($data['images'] as $imageData) {
+            list($type, $encoded) = explode(';', $imageData['url']);
+            list(, $encoded)      = explode(',', $encoded);
 
-            $decodedImage = base64_decode($imageData);
+            $decodedImage = base64_decode($encoded);
 
-            $imageName =  time() . '_' . $image['name'];
-            $image_path = 'app/uploads/public/' . $imageName;
+            $imageName =  time() . '_' . uniqid() . '_' . $imageData['name'];
+            // $imageName = time() . '_' . $imageData['name'];
+            $imagePath = 'app/uploads/public/' . $imageName;
 
-            file_put_contents(storage_path($image_path), $decodedImage);
+            file_put_contents(storage_path($imagePath), $decodedImage);
 
-            Image::create(['listing_id' => $listing->id, 'image_path' => $image_path]);
+            // Image::create(['listing_id' => $listing->id, 'image_path' => $imagePath]);
+
+            $image = new Image;
+            $image->listing_id = $listing->id;
+            $image->image_path = $imagePath;
+            // $image->image = storage_path($imagePath);
+            // $image->image = (new File)->fromData($decodedImage, $imageName); // If I would not use file_put_contents() to save the image to the storage, I would use this line instead.
+            $image->save();
         }
 
         return response()->json([], 201, []);
+    }
+
+    public function getImages($listing) {
+        $images = Image::where('listing_id', $listing->id)->get();
+        // $images = $listing->images;
+        foreach ($images as $image) {
+            $image->url = env('STORAGE_URL') . $image->image_path;
+            // $image->url = $image->image->getPath();
+        }
+        return $images;
     }
 }

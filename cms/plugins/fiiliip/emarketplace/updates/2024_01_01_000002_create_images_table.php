@@ -25,7 +25,7 @@ class CreateImagesTable extends Migration
     {
         Schema::dropIfExists('fiiliip_emarketplace_images');
 
-        // TODO: Remove the images from the storage.
+        // Remove the images from the storage.
         $storagePath = storage_path('app/uploads/public');
         if (file_exists($storagePath)) {
             $files = glob($storagePath . '/*');

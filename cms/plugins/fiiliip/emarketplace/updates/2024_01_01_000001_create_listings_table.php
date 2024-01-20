@@ -10,12 +10,12 @@ class CreateListingsTable extends Migration {
             $table->engine = 'InnoDB';
             $table->increments('id');
 
+            $table->integer('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('fiiliip_emarketplace_categories')->onUpdate('cascade')->onDelete('cascade');
 
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            
             $table->string('title');
             $table->text('description');
             $table->decimal('price', 10, 2); // 10 digits in total, 2 after the decimal point

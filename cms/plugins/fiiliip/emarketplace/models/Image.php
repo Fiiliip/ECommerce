@@ -1,6 +1,7 @@
 <?php namespace Fiiliip\EMarketplace\Models;
 
 use Model;
+use Storage;
 
 /**
  * Image Model
@@ -27,7 +28,10 @@ class Image extends Model
     /**
      * @var array rules for validation
      */
-    public $rules = [];
+    public $rules = [
+        'listing_id' => 'required',
+        'image_path' => 'required'
+    ];
 
     /**
      * @var array Attributes to be cast to native types
@@ -72,7 +76,18 @@ class Image extends Model
     public $morphOne = [];
     public $morphMany = [];
     public $attachOne = [
-        // 'image' => ['System\Models\File']
+        'image' => ['System\Models\File', 'delete' => true]
     ];
     public $attachMany = [];
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($image) {
+            unlink(storage_path($image->image_path));
+            // Storage::delete($image->image_path);
+            // Storage::delete($image->image->getPath());
+        });
+    }
 }

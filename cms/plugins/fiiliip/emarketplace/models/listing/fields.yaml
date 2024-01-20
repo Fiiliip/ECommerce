@@ -23,6 +23,10 @@ fields:
     description:
         label: Popis
         type: textarea
+    location:
+        label: Lokácia
+        type: text
+        span: right
     price:
         label: Cena
         type: number
@@ -32,3 +36,39 @@ fields:
         type: number
         span: right
         disabled: true
+        
+    # images:
+    #     label: Obrázky
+    #     type: fileupload
+    #     mode: image
+
+    # images:
+    #     label: Obrázky
+    #     type: repeater
+    #     prompt: 'Pridať obrázok'
+    #     form:
+    #         fields:
+    #             image_path:
+    #                 label: Image Path
+    #                 type: mediafinder
+    #                 mode: image
+    #                 useCaption: true
+    #                 span: auto
+
+                # image:
+                #     label: Obrázok
+                #     type: fileupload
+                #     mode: image
+                #     useCaption: true
+                #     thumbOptions:
+                #         mode: crop
+                #         extension: auto
+                #     imageWidth: 1000
+                #     imageHeight: 1000
+                #     span: auto
+
+
+
+        # path: $/fiiliip/emarketplace/models/listing/_images.htm
+        # disabled: true
+

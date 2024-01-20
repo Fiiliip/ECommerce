@@ -1,4 +1,4 @@
-1.0.1: 
+v1.0.1: 
  - First version of EMarketplace
  - 2024_01_01_000000_create_categories_table.php
  - 2024_01_01_000001_create_listings_table.php

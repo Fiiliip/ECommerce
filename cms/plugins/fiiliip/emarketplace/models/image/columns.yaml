@@ -7,7 +7,12 @@ columns:
         label: ID
         searchable: true
     listing_id:
-        label: Inzerát
+        label: ID Inzerátu
+        relation: listing
+        select: id
+        searchable: true
+    listing_title:
+        label: Názov Inzerátu
         relation: listing
         select: title
         searchable: true

@@ -14,7 +14,7 @@ columns:
         relation: user
         select: username
         searchable: true
-    category_title:
+    category:
         label: Kategória
         relation: category
         select: title

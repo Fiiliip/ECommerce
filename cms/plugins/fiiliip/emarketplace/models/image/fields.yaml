@@ -6,11 +6,18 @@ fields:
     id:
         label: ID
         disabled: true
-    listing_id:
-        label: Listing ID
-        disabled: true
+    listing:
+        label: Inzerát
+        type: relation
+        select: concat('ID Inzerátu:', ' ', id, ', Názov:', ' ', title)
     image_path:
         label: Image Path
+        
+    # image:
+    #     label: Obrázok
+    #     type: mediafinder
+    #     mode: image
+        
     # image:
     #     label: Image
     #     type: fileupload
