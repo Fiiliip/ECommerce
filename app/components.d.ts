@@ -20,6 +20,7 @@ declare module 'vue' {
     Listing: typeof import('./src/plugins/app@emarketplace/listing/listing.vue')['default']
     Listings: typeof import('./src/plugins/app@emarketplace/listings/listings.vue')['default']
     Login: typeof import('./src/plugins/app@auth/login/login.vue')['default']
+    MyListings: typeof import('./src/plugins/app@emarketplace/my-listings/my-listings.vue')['default']
     NewListing: typeof import('./src/plugins/app@emarketplace/new-listing/new-listing.vue')['default']
     Register: typeof import('./src/plugins/app@auth/register/register.vue')['default']
     ResetPassword: typeof import('./src/plugins/app@auth/reset-password/reset-password.vue')['default']

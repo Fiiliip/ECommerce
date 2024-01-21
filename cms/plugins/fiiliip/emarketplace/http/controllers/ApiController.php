@@ -31,6 +31,11 @@ class ApiController extends Controller {
             $query->where('category_id', $category->id);
         }
 
+        if ($request->has('user')) {
+            $user_id = $request->input('user');
+            $query->where('user_id', $user_id);
+        }
+
         if ($request->has('mostRecent')) {
             $mostRecent = $request->input('mostRecent'); // Contains number of how many most recent listings to return.
             $query->orderBy('created_at', 'desc')->take($mostRecent);
