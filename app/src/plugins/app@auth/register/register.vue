@@ -73,7 +73,7 @@ export default {
         async register() {
             if (!await this.v$.$validate()) return
 
-            this.$loader.startLoading(this.$t('Signing up...'))
+            this.$loader.startLoading(this.$t('Registrujem sa...'))
 
             try {
                 await this.$store.dispatch('auth/signup', this.form)

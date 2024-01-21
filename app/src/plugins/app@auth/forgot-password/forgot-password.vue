@@ -50,12 +50,16 @@ export default {
         async forgotPassword() {
             if (!await this.v$.$validate()) return
 
+            this.$loader.startLoading()
+
             try {
-                // TODO: Send AXIOS request.
+                await this.$store.dispatch('auth/forgotPassword', this.form)
                 localStorage.setItem('emarketplace_reset_password_user_email', this.form.email)
                 this.$router.push({ name: 'Reset Password' })
             } catch(error) {
-                console.log(error)
+                this.$toast.error(error)
+            } finally {
+                this.$loader.stopLoading()
             }
         }
     }

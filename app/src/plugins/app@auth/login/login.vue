@@ -64,7 +64,7 @@ export default {
         async login() {
             if (!await this.v$.$validate()) return
 
-            this.$loader.startLoading(this.$t('Signing in...'))
+            this.$loader.startLoading(this.$t('Prihlasujem sa...'))
 
             try {
                 await this.$store.dispatch('auth/login', { login: this.form.email, password: this.form.password })

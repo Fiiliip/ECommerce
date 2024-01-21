@@ -57,21 +57,28 @@ export default {
         async resetPassword() {
             if (!await this.v$.$validate()) return
 
+            this.$loader.startLoading()
+
             try {
-                // TODO: Send AXIOS request.
+                await this.$store.dispatch('auth/resetPassword', this.form)
                 localStorage.removeItem('emarketplace_reset_password_email')
                 this.$router.replace({ name: 'Login' })
             } catch(error) {
-                console.log(error)
+                this.$toast.error(error)
+            } finally {
+                this.$loader.stopLoading()
             }
         },
 
         async resendVerificationCode() {
+            this.$loader.startLoading()
             try {
-                // TODO: Send AXIOS request.
-                // TODO: Display to user, that verification code was sent to it's email.
+                await this.$store.dispatch('auth/forgotPassword', this.form)
+                this.$toast.success('Verifikačný kód bol odoslaný na Váš e-mail.')
             } catch(error) {
-                console.log(error)
+                this.$toast.error(error)
+            } finally {
+                this.$loader.stopLoading()
             }
         }
     }
