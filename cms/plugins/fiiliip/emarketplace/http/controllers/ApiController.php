@@ -26,8 +26,9 @@ class ApiController extends Controller {
         }
 
         if ($request->has('category')) {
-            $category = $request->input('category');
-            $query->where('category_id', $category);
+            $category_title = $request->input('category');
+            $category = Category::where('title', $category_title)->first();
+            $query->where('category_id', $category->id);
         }
 
         if ($request->has('mostRecent')) {
