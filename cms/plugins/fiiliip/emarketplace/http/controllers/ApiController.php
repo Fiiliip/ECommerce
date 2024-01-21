@@ -144,6 +144,81 @@ class ApiController extends Controller {
         return response()->json([], 201, []);
     }
 
+    public function updateListing(Request $request, $id) {
+        $rules = [
+            'title' => 'required',
+            'category_id' => 'required',
+            'user_id' => 'required',
+            'price' => 'required',
+            'description' => 'required',
+            // 'images' => 'required|array',
+            // 'images.*' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ];
+
+        $validator = Validator::make($request->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => 'Invalid data.'], 500, []);
+        }
+
+        if ($request->isJson()) {
+            $data = $request->json()->all();
+        } else {
+            return response()->json(['error' => 'Data are not in JSON format.'], 500, []);
+        }
+
+        $listing = Listing::where('id', $id)->first();
+        if (!$listing) {
+            return response()->json(['error' => 'Listing does not exist.'], 500, []);
+        }
+
+        $category = Category::where('id', $data['category_id'])->first();
+        if (!$category) {
+            return response()->json(['error' => 'Category does not exist.'], 500, []);
+        }
+
+        $user = User::where('id', $data['user_id'])->first();
+        if (!$user) {
+            return response()->json(['error' => 'User does not exist.'], 500, []);
+        }
+
+        $listing->fill($data);
+        if (!$listing->save()) {
+            return response()->json(['error' => 'Listing could not be updated.'], 500, []);
+        }
+
+        // Delete all images for the listing.
+        $images = Image::where('listing_id', $listing->id)->get();
+        foreach ($images as $image) {
+            $image->delete();
+        }
+
+        // Create new images for the listing.
+        foreach ($data['images'] as $imageData) {
+            list($type, $encoded) = explode(';', $imageData['url']);
+            list(, $encoded)      = explode(',', $encoded);
+
+            $decodedImage = base64_decode($encoded);
+
+            $imageName =  time() . '_' . uniqid() . '_' . $imageData['name'];
+            // $imageName = time() . '_' . $imageData['name'];
+            $imagePath = 'app/uploads/public/' . $imageName;
+
+            file_put_contents(storage_path($imagePath), $decodedImage);
+
+            // Image::create(['listing_id' => $listing->id, 'image_path' => $imagePath]);
+
+            $image = new Image;
+            $image->listing_id = $listing->id;
+            $image->image_path = $imagePath;
+            // $image->image = storage_path($imagePath);
+            // $image->image = (new File)->fromData($decodedImage, $imageName); // If I would not use file_put_contents() to save the image to the storage, I would use this line instead.
+            $image->save();
+        }
+
+        return response()->json([], 201, []);
+    }
+
     public function getImages($listing) {
         $images = Image::where('listing_id', $listing->id)->get();
         // $images = $listing->images;

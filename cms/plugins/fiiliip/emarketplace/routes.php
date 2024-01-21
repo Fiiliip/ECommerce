@@ -9,5 +9,7 @@
         Route::get('/listing/{id}', 'ApiController@getListing');
 
         Route::post('/listing', 'ApiController@createListing');
+        
+        Route::put('/listing/{id}', 'ApiController@updateListing');
     });
 ?>

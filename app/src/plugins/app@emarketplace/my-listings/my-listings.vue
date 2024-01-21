@@ -3,7 +3,7 @@
         <h1 class="mt-5 text-3xl font-bold">Moje inzeráty</h1>
         <div class="mt-5 flex flex-row justify-center">
             <div class="w-full grid gap-3 grid-cols xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4">
-                <z-listing-card v-for="(listing, listingIdx) in $skelet(listings, 10)" :key="`listing-${listingIdx}`" :listing="listing" />
+                <z-listing-card @click="$router.push({ name: 'Edit Listing', params: { id: listing.id }})" v-for="(listing, listingIdx) in $skelet(listings, 10)" :key="`listing-${listingIdx}`" :listing="listing" />
             </div>
         </div>
     </div>
@@ -22,7 +22,3 @@ export default {
     }
 }
 </script>
-
-<style>
-
-</style>
