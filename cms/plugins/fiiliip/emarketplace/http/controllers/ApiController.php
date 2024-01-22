@@ -120,25 +120,7 @@ class ApiController extends Controller {
         }
 
         foreach ($data['images'] as $imageData) {
-            list($type, $encoded) = explode(';', $imageData['url']);
-            list(, $encoded)      = explode(',', $encoded);
-
-            $decodedImage = base64_decode($encoded);
-
-            $imageName =  time() . '_' . uniqid() . '_' . $imageData['name'];
-            // $imageName = time() . '_' . $imageData['name'];
-            $imagePath = 'app/uploads/public/' . $imageName;
-
-            file_put_contents(storage_path($imagePath), $decodedImage);
-
-            // Image::create(['listing_id' => $listing->id, 'image_path' => $imagePath]);
-
-            $image = new Image;
-            $image->listing_id = $listing->id;
-            $image->image_path = $imagePath;
-            // $image->image = storage_path($imagePath);
-            // $image->image = (new File)->fromData($decodedImage, $imageName); // If I would not use file_put_contents() to save the image to the storage, I would use this line instead.
-            $image->save();
+            $this->saveNewImage($imageData, $listing);
         }
 
         return response()->json([], 201, []);
@@ -187,33 +169,25 @@ class ApiController extends Controller {
             return response()->json(['error' => 'Listing could not be updated.'], 500, []);
         }
 
-        // Delete all images for the listing.
-        $images = Image::where('listing_id', $listing->id)->get();
-        foreach ($images as $image) {
-            $image->delete();
+        $listing_images = Image::where('listing_id', $listing->id)->get();
+        foreach ($listing_images as $listing_image) {
+            $does_image_exist = false;
+            foreach($data['images'] as $imageData) {
+                if (isset($imageData['id']) && $imageData['id'] == $listing_image->id) {
+                    $does_image_exist = true;
+                    break;
+                }
+            }
+
+            if (!$does_image_exist) {
+                Image::where('id', $listing_image->id)->delete();
+            }
         }
 
-        // Create new images for the listing.
         foreach ($data['images'] as $imageData) {
-            list($type, $encoded) = explode(';', $imageData['url']);
-            list(, $encoded)      = explode(',', $encoded);
-
-            $decodedImage = base64_decode($encoded);
-
-            $imageName =  time() . '_' . uniqid() . '_' . $imageData['name'];
-            // $imageName = time() . '_' . $imageData['name'];
-            $imagePath = 'app/uploads/public/' . $imageName;
-
-            file_put_contents(storage_path($imagePath), $decodedImage);
-
-            // Image::create(['listing_id' => $listing->id, 'image_path' => $imagePath]);
-
-            $image = new Image;
-            $image->listing_id = $listing->id;
-            $image->image_path = $imagePath;
-            // $image->image = storage_path($imagePath);
-            // $image->image = (new File)->fromData($decodedImage, $imageName); // If I would not use file_put_contents() to save the image to the storage, I would use this line instead.
-            $image->save();
+            if (!isset($imageData['id'])) {
+                $this->saveNewImage($imageData, $listing);
+            }
         }
 
         return response()->json([], 201, []);
@@ -227,5 +201,27 @@ class ApiController extends Controller {
             // $image->url = $image->image->getPath();
         }
         return $images;
+    }
+
+    public function saveNewImage($imageData, $listing) {
+        list($type, $encoded) = explode(';', $imageData['url']);
+        list(, $encoded)      = explode(',', $encoded);
+
+        $decodedImage = base64_decode($encoded);
+
+        $imageName =  time() . '_' . uniqid() . '_' . $imageData['name'];
+        // $imageName = time() . '_' . $imageData['name'];
+        $imagePath = 'app/uploads/public/' . $imageName;
+
+        file_put_contents(storage_path($imagePath), $decodedImage);
+
+        // Image::create(['listing_id' => $listing->id, 'image_path' => $imagePath]);
+
+        $image = new Image;
+        $image->listing_id = $listing->id;
+        $image->image_path = $imagePath;
+        // $image->image = storage_path($imagePath);
+        // $image->image = (new File)->fromData($decodedImage, $imageName); // If I would not use file_put_contents() to save the image to the storage, I would use this line instead.
+        $image->save();
     }
 }
