@@ -5,7 +5,7 @@
                 <h2 class="text-2xl font-bold leading-9 tracking-tight">Resetovanie hesla</h2>
                 <p class="text-sm">Zadajte verifikačný kód, ktorý sme Vám odoslali na <span class="font-bold">{{ form.email ? form.email : '[chyba pri spracovaní e-mailu]' }}</span> a nové heslo.</p>
 
-                <form @submit.prevent="resetPassword()" class="mt-4 space-y-9">
+                <form @submit.prevent class="mt-4 space-y-9">
                     <z-form-input v-model="v$.form.code" label="Verifikačný kód" type="text" />
                     <z-form-input v-model="v$.form.password" label="Heslo" type="password" autocomplete="password"/>
                     <z-form-input v-model="v$.form.password_confirmation" label="Potvrdenie hesla" type="password" />

@@ -4,7 +4,7 @@
             <div class="px-6 sm:px-12 py-12 bg-white shadow sm:rounded-lg">
                 <h2 class="text-2xl font-bold leading-9 tracking-tight">Registrovať sa</h2>
 
-                <form @submit.prevent="register()" class="mt-4 space-y-9">
+                <form @submit.prevent class="mt-4 space-y-9">
                     <div class="md:flex md:space-y-0 space-y-6">
                         <z-form-input class="md:me-1" v-model="v$.form.name" name="first-name" type="text" label="Meno" autocomplete="given-name"/>
                         <z-form-input class="md:ms-1" v-model="v$.form.surname" name="last-name" type="text" label="Priezvisko" autocomplete="family-name"/>

@@ -33,13 +33,13 @@
                 <div v-for="(image, imageIdx) in value" :key="`image-${imageIdx}`" class="listing-image relative">
                     <img :src="image.url" :alt="image.name" class="h-20 w-20 rounded-md">
                     <button @click="value.splice(imageIdx, 1)" class="absolute hidden -top-1 -right-1 w-5 h-5 items-center justify-center bg-red-400 rounded-full">
-                        <img class="w-3 h-3" src="@/plugins/app/_assets/_icons/eye.svg">
+                        <img class="w-3 h-3" src="@/plugins/app/_assets/_icons/close.svg">
                     </button>
                 </div>
                 <div v-if="value == null || value?.length < 5" class="relative">
                     <div class="h-20 w-20 text-center border-2 border-dashed rounded-md">
                         <label for="image" class="flex w-full h-full justify-center items-center text-sm cursor-pointer hover:opacity-70">
-                            <img class="w-8 h-8" src="@/plugins/app/_assets/_icons/eye.svg">
+                            <img class="w-8 h-8" src="@/plugins/app/_assets/_icons/plus.svg">
                         </label>
                     </div>
                     <input @change="uploadImage($event)" id="image" type="file" accept="image/*" class="hidden" multiple>

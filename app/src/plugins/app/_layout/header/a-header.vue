@@ -50,10 +50,3 @@ export default {
     }
 }
 </script>
-
-<style lang="sass" scoped>
-
-.user-profile:hover .dropdown
-    @apply block absolute
-    // display: block
-</style>

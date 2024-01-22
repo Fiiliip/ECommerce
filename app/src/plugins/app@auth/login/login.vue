@@ -4,7 +4,7 @@
             <div class="px-6 sm:px-12 py-12 bg-white shadow sm:rounded-lg">
                 <h2 class="text-2xl font-bold leading-9 tracking-tight">Prihlásiť sa</h2>
 
-                <form @submit.prevent="login()" class="mt-4 space-y-9">
+                <form @submit.prevent class="mt-4 space-y-9">
                     <z-form-input v-model="v$.form.email" label="E-Mail" type="email" autocomplete="email" />
                     <z-form-input v-model="v$.form.password" label="Heslo" type="password" autocomplete="password"/>
 

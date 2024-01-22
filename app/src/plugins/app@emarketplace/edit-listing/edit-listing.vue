@@ -1,12 +1,11 @@
 
-import store from '@/plugins/app/_config/store';
 <template>
     <div class="py-12 sm:px-6 lg:px-8 flex flex-1 flex-col justify-center">
         <div class="mt-10 sm:w-full sm:mx-auto">
             <div class="px-6 sm:px-12 py-12 bg-white shadow sm:rounded-lg">
                 <h2 class="text-2xl font-bold leading-9 tracking-tight">Upraviť inzerát</h2>
 
-                <form @submit.prevent="editListing()" class="mt-4 space-y-9">
+                <form @submit.prevent class="mt-4 space-y-9">
                     <z-form-input v-model="v$.form.category" label="Kategória" type="dropdown" :dropdownOptions="categories"/>
                     <z-form-input v-model="v$.form.title" label="Nadpis" type="text"/>
                     <z-form-input v-model="v$.form.description" label="Popis" type="textarea"/>
@@ -62,23 +61,14 @@ export default {
                 location: { required },
                 price: { required },
                 images: { required }
-            },
-            userAgreement: { agreed: (value) => value === true }
+            }
         }
     },
 
     async mounted() {
-        const listing = await this._getListing(this.$route.params.id)
-        // this.v$.form = {
-        //     category: this.$store.getters['emarketplace/categories'].find(category => category.id === listing.category_id),
-        //     title: listing.title,
-        //     description: listing.description,
-        //     user_id: listing.user_id,
-        //     location: listing.location,
-        //     price: listing.price,
-        //     images: listing.images
-        // }
+        this.$loader.startLoading()
 
+        const listing = await this._getListing(this.$route.params.id)
         this.form = {
             category: this.$store.getters['emarketplace/categories'].find(category => category.id === listing.category_id),
             title: listing.title,
@@ -88,11 +78,13 @@ export default {
             price: listing.price,
             images: listing.images
         }
+
+        this.$loader.stopLoading()
     },
 
     methods: {
         async editListing() {
-            // if (!await this.v$.$validate()) return
+            if (!await this.v$.$validate()) return
             
             this.$loader.startLoading()
 

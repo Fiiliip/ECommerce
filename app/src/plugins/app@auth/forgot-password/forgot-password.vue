@@ -5,7 +5,7 @@
                 <h2 class="text-2xl font-bold leading-9 tracking-tight">Zabudnuté heslo?</h2>
                 <p class="text-sm">Zadajte svoj e-mail a my Vám pošleme verifikačný kód na resetovanie hesla.</p>
 
-                <form @submit.prevent="login()" class="mt-4 space-y-9">
+                <form @submit.prevent class="mt-4 space-y-9">
                     <z-form-input v-model="v$.form.email" label="E-Mail" type="email" autocomplete="email" />
 
                     <div>

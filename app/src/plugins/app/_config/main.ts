@@ -45,7 +45,7 @@ const app = createApp(App)
 app.mixin(EMarketplaceMixin)
 
 // Enable/Disable moxios. Default: true.
-localStorage.setItem('isMoxios', 'true')
+localStorage.setItem('isMoxios', 'false')
 
 router.isReady().then(() => {
     app.mount('#app')

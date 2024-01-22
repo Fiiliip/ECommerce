@@ -4,7 +4,7 @@
             <div class="px-6 sm:px-12 py-12 bg-white shadow sm:rounded-lg">
                 <h2 class="text-2xl font-bold leading-9 tracking-tight">Vytvoriť inzerát</h2>
 
-                <form @submit.prevent="createListing()" class="mt-4 space-y-9">
+                <form @submit.prevent class="mt-4 space-y-9">
                     <z-form-input v-model="v$.form.category" label="Kategória" type="dropdown" :dropdownOptions="categories"/>
                     <z-form-input v-model="v$.form.title" label="Nadpis" type="text"/>
                     <z-form-input v-model="v$.form.description" label="Popis" type="textarea"/>
