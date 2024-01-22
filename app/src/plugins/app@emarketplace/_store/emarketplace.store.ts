@@ -4,15 +4,13 @@ export default {
     namespaced: true,
 
     state: {
-        categories: localStorage.getItem('emarketplace_categories') ? JSON.parse(localStorage.getItem('emarketplace_categories')) : null,
+        categories: JSON.parse(localStorage.getItem('emarketplace_categories')) || null,
     },
 
     mutations: {
         set_categories(state: any, categories: any) {
             state.categories = categories
-            if (categories) {
-                localStorage.setItem('emarketplace_categories', JSON.stringify(categories))
-            }
+            localStorage.setItem('emarketplace_categories', JSON.stringify(categories))
         },
     },
 
@@ -23,10 +21,9 @@ export default {
 
         categories_load({ commit }: { commit: any }) {
             return new Promise((resolve, reject) => {
-                axios.get('http://127.0.0.1:8000/api/v1/mall/categories').then((response: any) => {
-                    const categories = response
+                axios.get('/api/v1/mall/categories').then((categories: any) => {
                     commit('set_categories', categories)
-                    resolve(response)
+                    resolve(categories)
                 }).catch((error: any) => {
                     reject(error)
                 })

@@ -16,10 +16,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     data() {
         return {
-            categories: this.$store.getters['emarketplace/categories'],
             listingSections: [
                 {
                     title: 'Najnovšie inzeráty',
@@ -32,5 +33,9 @@ export default {
             ],
         }
     },
+
+    computed: {
+        ...mapGetters('emarketplace', ['categories'])
+    }
 }
 </script>
