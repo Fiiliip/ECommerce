@@ -16,6 +16,7 @@ declare module 'vue' {
     AListingsSection: typeof import('./src/plugins/app@emarketplace/storefront/_components/a-listings-section.vue')['default']
     App: typeof import('./src/plugins/app/_config/App.vue')['default']
     ASearchbar: typeof import('./src/plugins/app@emarketplace/storefront/_components/z-searchbar.vue')['default']
+    EditCategories: typeof import('./src/plugins/app@emarketplace/edit-categories/edit-categories.vue')['default']
     EditListing: typeof import('./src/plugins/app@emarketplace/edit-listing/edit-listing.vue')['default']
     ForgotPassword: typeof import('./src/plugins/app@auth/forgot-password/forgot-password.vue')['default']
     Listing: typeof import('./src/plugins/app@emarketplace/listing/listing.vue')['default']

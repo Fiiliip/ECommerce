@@ -18,6 +18,10 @@
                             <button :disabled="this.$loader.isLoading()" type="submit" @click.prevent="editListing()" :class="{'!bg-zinc-300': this.$loader.isLoading()}" class="flex w-full justify-center rounded-md bg-zinc-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-zinc-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600">
                                 Upraviť inzerát
                             </button>
+
+                            <button :disabled="this.$loader.isLoading()" @click="removeListing()" :class="{'!bg-red-300': this.$loader.isLoading()}" class="flex w-full mt-5 justify-center rounded-md bg-red-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-zinc-600">
+                                Vymazať inzerát
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -26,7 +30,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 import useVuealidate from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 import zFormInput from '../../app/_layout/_components/z-form-input.vue'
@@ -94,6 +98,19 @@ export default {
             try {
                 await this.$axios.put(`/api/v1/mall/listing/${this.$route.params.id}`, this.form)
                 this.$toast.success('Listing was updated.', 'top')
+                this.$router.replace({ name: 'Home' })
+            } catch(error) {
+                this.$toast.error(error.response, 'top')
+            } finally {
+                this.$loader.stopLoading()
+            }
+        },
+
+        async removeListing() {
+            this.$loader.startLoading()
+            try {
+                await this.$axios.delete(`/api/v1/mall/listing/${this.$route.params.id}`)
+                this.$toast.success('Listing was removed.', 'top')
                 this.$router.replace({ name: 'Home' })
             } catch(error) {
                 this.$toast.error(error.response, 'top')

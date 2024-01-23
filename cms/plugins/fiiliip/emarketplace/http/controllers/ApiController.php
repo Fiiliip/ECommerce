@@ -10,8 +10,27 @@ use Fiiliip\EMarketplace\Models\Listing;
 use Fiiliip\EMarketplace\Models\Image;
 
 use RainLab\User\Models\User;
+use RainLab\User\Models\UserGroup;
 
 class ApiController extends Controller {
+    public function addCategory(Request $request) {
+        $category = new Category;
+
+        if ($request->isJson()) {
+            $data = $request->json()->all();
+        } else {
+            return response()->json(['error' => 'Data are not in JSON format.'], 500, []);
+        }
+
+        $category->fill($data);
+
+        if ($category->save()) {
+            return response()->json(['success' => 'Category was created.'], 201, []);
+        } else {
+            return response()->json(['error' => 'Category was not created.'], 201, []);
+        }
+    }
+
     public function getCategories() {
         $categories = Category::all();
         return response()->json($categories, 200);
@@ -26,8 +45,11 @@ class ApiController extends Controller {
         }
 
         if ($request->has('category')) {
-            $category_title = $request->input('category');
-            $category = Category::where('title', $category_title)->first();
+            $category_slug = $request->input('category');
+            $category = Category::where('slug', $category_slug)->first();
+            if (!$category) {
+                return response()->json(['error' => 'Category does not exists.'], 500, []);
+            }
             $query->where('category_id', $category->id);
         }
 
@@ -191,6 +213,42 @@ class ApiController extends Controller {
         }
 
         return response()->json([], 201, []);
+    }
+
+    public function deleteListing($id) {
+        $listing = Listing::where('id', $id)->first();
+        if (!$listing) {
+            return response()->json(['error' => 'Listing does not exist.'], 500, []);
+        }
+
+        $listing->delete();
+
+        return response()->json([], 200, []);
+    }
+
+    public function isUserAdmin($userId) {
+        $user_group = UserGroup::where('name', 'Admin')->first();
+
+        return response()->json(['isUserAdmin' => $user_group->users->contains($userId)], 200, []);
+    }
+
+    public function updateCategory(Request $request, $id) {
+        $category = Category::where('id', $id)->first();
+        $data = $request->json()->all();
+        $category->title = $data['title'];
+        if ($category->save()) {
+            return response()->json(['success' => 'Category was updated.'], 201, []);
+        } else {
+            return response()->json(['error' => 'Category was not updated.'], 500, []);
+        }
+    }
+
+    public function deleteCategory($id) {
+        if (Category::where('id', $id)->delete()) {
+            return response()->json(['success' => 'Category was deleted.'], 200, []);
+        } else {
+            return response()->json(['error' => 'Category does not exist.'], 500, []);
+        }
     }
 
     public function getImages($listing) {

@@ -20,6 +20,7 @@ export default {
 		status: '',
 		_token: localStorage.getItem('emarketplace_user_token') || '',
 		user: JSON.parse(localStorage.getItem('emarketplace_user') || '{}'),
+		isUserAdmin: false
 	},
 	mutations: {
 		auth_request(state: any) {
@@ -69,6 +70,8 @@ export default {
 							user: user
 						})
 
+						this.dispatch('auth/isUserAdmin')
+
 						resolve(response)
 					}).catch(error => {
 						console.log(error)
@@ -90,6 +93,8 @@ export default {
 							token: token,
 							user: user
 						})
+
+						this.dispatch('auth/isUserAdmin')
 
 						resolve(response)
 					}).catch(error => {
@@ -171,6 +176,20 @@ export default {
 					})
 			})
 		},
+		isUserAdmin() {
+			return new Promise((resolve, reject) => {
+				axios.get_auth_data(`/api/v1/mall/isUserAdmin/${this.state.auth.user.id}`)
+					.then((response: any) => {
+						const isAdmin = response.isAdmin
+
+						this.state.isAdmin = isAdmin
+
+						resolve(isAdmin)
+					}).catch(error => {
+						reject(error)
+					})
+			})
+		}
 	},
 	getters: {
 		isLoggedIn: (state: any) =>  {
@@ -181,6 +200,9 @@ export default {
 		},
 		token: (state: any) => {
 			return state._token
+		},
+		isUserAdmin: (state: any) => {
+			return state.isUserAdmin
 		}
 	}
 }

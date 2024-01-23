@@ -37,6 +37,12 @@ const router = createRouter({
       component: () => import('@/plugins/app@emarketplace/edit-listing/edit-listing.vue'),
       meta: { requiresAuth: true }
     },
+    {
+      path: '/edit-categories',
+      name: 'Edit Categories',
+      component: () => import('@/plugins/app@emarketplace/edit-categories/edit-categories.vue'),
+      meta: { requiresAuth: true, requiresAdmin: true }
+    },
     // Auth
     {
       path: '/auth/login',
@@ -81,6 +87,14 @@ router.beforeEach((to, from, next) => {
 
 		return next()
 	}
+
+  if (to.meta.requiresAdmin === true) {
+    if (!store.getters["auth/isAdmin"]) {
+      return next({ name: "Home" })
+    }
+
+    return next()
+  }
 
 	return next()
 })
